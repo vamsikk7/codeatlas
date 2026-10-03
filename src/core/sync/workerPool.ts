@@ -144,7 +144,14 @@ export class WorkerPool {
             }
             this.handleWorkerMessage(slot, msg);
         });
-        w.on('error', (err) => this.handleWorkerExit(slot, err));
+        // @types/node 26 types the 'error' payload as `unknown` rather than
+        // `Error` -- correctly, since a worker can reject with any value.
+        // Narrow it so a non-Error throw still produces a usable message
+        // instead of `[object Object]` downstream.
+        w.on('error', (err: unknown) => this.handleWorkerExit(
+            slot,
+            err instanceof Error ? err : new Error(String(err)),
+        ));
         w.on('exit', (code) => {
             if (code !== 0) {
                 this.handleWorkerExit(slot, new Error(`[WorkerPool] worker exited with code ${code}`));

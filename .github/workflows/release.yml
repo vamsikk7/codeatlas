@@ -8,8 +8,8 @@ jobs:
   package:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 20
           cache: npm
@@ -31,7 +31,7 @@ jobs:
       # Cache key on repos.json content so unchanged manifests skip re-cloning.
       - name: Restore real-repo cache
         id: real-repo-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: e2e/real-repos
           key: real-repos-${{ hashFiles('e2e/real-projects/repos.json') }}
@@ -63,7 +63,7 @@ jobs:
           path: codeatlas.vsix
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: codeatlas.vsix
           generate_release_notes: true

@@ -20,9 +20,9 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
+    "@testing-library/react": "^16.3.3",
     "@types/babel__traverse": "^7.28.0",
-    "@types/dagre": "^0.7.52",
+    "@types/dagre": "^0.7.54",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.2.0",
