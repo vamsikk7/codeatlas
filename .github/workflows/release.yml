@@ -31,7 +31,7 @@ jobs:
       # Cache key on repos.json content so unchanged manifests skip re-cloning.
       - name: Restore real-repo cache
         id: real-repo-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: e2e/real-repos
           key: real-repos-${{ hashFiles('e2e/real-projects/repos.json') }}
