@@ -659,13 +659,13 @@
         "bench:llm:capture": "npx tsx e2e/llm-quality/captureRawFindings.ts"
     },
     "devDependencies": {
-        "@playwright/test": "^1.59.1",
+        "@playwright/test": "^1.63.0",
         "@types/babel__traverse": "^7.28.0",
         "@types/js-yaml": "^4.0.9",
         "@types/node": "^20.11.0",
         "@types/sql.js": "^1.4.9",
-        "@types/vscode": "^1.85.0",
-        "esbuild": "^0.20.0",
+        "@types/vscode": "^1.138.0",
+        "esbuild": "^0.28.2",
         "typescript": "^5.3.0",
         "vitest": "^1.2.0"
     },
