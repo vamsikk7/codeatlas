@@ -1,7 +1,12 @@
 # Dependency updates across all three npm trees plus GitHub Actions.
 #
-# Grouped by risk: production dependencies are reviewed individually, dev
-# dependencies arrive as one weekly batch so the PR queue stays readable.
+# Grouped by risk: production minor/patch arrive as one batch, dev
+# dependencies as another, so the PR queue stays readable. Majors still come
+# through individually -- those deserve to be looked at one at a time.
+#
+# The `ignore` blocks below are DELIBERATE DEFERRALS, each one evaluated and
+# rejected with a reason. They are not "never do this"; they are "not without
+# dedicated work". Remove the entry when you are ready to do that work.
 version: 2
 
 updates:
@@ -13,12 +18,72 @@ updates:
     open-pull-requests-limit: 10
     labels: [dependencies]
     groups:
+      production-dependencies:
+        dependency-type: production
+        update-types: [minor, patch]
       dev-dependencies:
         dependency-type: development
         update-types: [minor, patch]
-      production-patches:
-        dependency-type: production
-        update-types: [patch]
+    ignore:
+      # js-yaml 5 is an API rewrite: DEFAULT_SCHEMA and Type are removed in
+      # favour of Schema / defineScalarTag. That breaks the CloudFormation
+      # intrinsic-tag schema used for AWS SAM templates in serviceDetector.ts,
+      # samResourceExtractor.ts and samRouteExtractor.ts. The js-yaml DoS
+      # advisories are already fixed on the 4.x line, so there is no security
+      # reason to take it.
+      - dependency-name: 'js-yaml'
+        versions: ['>=5']
+
+      # web-tree-sitter 0.23+ moves Parser.init and the Parser type behind
+      # named exports. treeSitterParser.ts carries deliberate ESM/CJS interop
+      # workarounds for vitest-vs-runtime resolution, and this package drives
+      # 12 of the 14 supported languages. Needs its own change, verified
+      # against the real-repo corpus -- and likely a matching
+      # tree-sitter-wasms grammar bump.
+      - dependency-name: 'web-tree-sitter'
+        versions: ['>=0.23']
+
+      # @types/node should track the MINIMUM supported runtime, not the newest
+      # release. CI tests Node 18 and esbuild targets node18; typing against
+      # Node 26 lets code compile against APIs that are absent at runtime.
+      # Raise this when the supported floor moves.
+      - dependency-name: '@types/node'
+        versions: ['>=21']
+
+      # Playwright 1.60+ requires Node >=20, and its TypeScript config loader
+      # needs 20.19+. It broke `npm run test:e2e` outright. Revisit once the
+      # local and CI Node floor is 20.19 or later.
+      - dependency-name: '@playwright/test'
+        versions: ['>=1.60']
+
+      # Deferred majors. Each is real work, not a version bump.
+      #
+      # vitest 1 -> 5 is BLOCKED ON A NODE FLOOR DECISION, not on code.
+      #   vitest@5 engines: ^22.12.0 || ^24.0.0 || >=26.0.0
+      #   vite@8   engines: ^20.19.0 || >=22.12.0
+      # CI currently tests Node 18 and 20, so neither can run anywhere today.
+      #
+      # This chain (vitest -> vite -> vite-node -> esbuild) is the source of
+      # EVERY open Dependabot alert on the repo, including both criticals.
+      # All of them are devDependencies: production audit is 0. The Vitest UI
+      # advisory additionally requires the UI server to be running, which
+      # neither CI nor `vitest run` starts.
+      #
+      # To clear them: raise the dev Node floor to 22, split the CI matrix so
+      # tests run on 22 while a compile job still proves the node18 esbuild
+      # target, then take vitest 5 + vite 8 together. The extension's runtime
+      # support is unaffected -- this is test tooling only.
+      - dependency-name: 'vitest'
+        update-types: ['version-update:semver-major']
+      # @babel/traverse 7 -> 8 touches the AST visitor API in four parser
+      # files at the heart of JS/TS analysis. CLAUDE.md also records four
+      # pre-existing @babel/traverse type errors that would need re-baselining.
+      - dependency-name: '@babel/traverse'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@babel/parser'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@babel/types'
+        update-types: ['version-update:semver-major']
 
   - package-ecosystem: npm
     directory: '/webview-ui'
@@ -31,6 +96,26 @@ updates:
       dev-dependencies:
         dependency-type: development
         update-types: [minor, patch]
+    ignore:
+      # React 18 -> 19 across the whole webview UI. Note that Dependabot
+      # bundles this under a branch named "multi", which reads like a grouped
+      # patch bundle and is not -- check the diff, not the branch name.
+      - dependency-name: 'react'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'react-dom'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@types/react'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@types/react-dom'
+        update-types: ['version-update:semver-major']
+      # vite 5 -> 8 and the matching plugin major. Pair them with the React
+      # upgrade rather than taking them separately.
+      - dependency-name: 'vite'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@vitejs/plugin-react'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'vitest'
+        update-types: ['version-update:semver-major']
 
   - package-ecosystem: npm
     directory: '/mcp-package'
