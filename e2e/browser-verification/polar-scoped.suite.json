@@ -1,0 +1,5251 @@
+{
+  "$schema": "polar-scoped",
+  "meta": {
+    "generatedFrom": "generate-polar-scoped.mjs",
+    "repo": "polar",
+    "note": "Fully-scoped polar walkthrough + diff/replay/review suite. Stateful cases perturb real source via {editFile} and auto-revert (exact-byte). Run headless against a live 7742 (VSIX) instance."
+  },
+  "repo": {
+    "id": "polar",
+    "category": "multirepo",
+    "kind": "multi",
+    "path": "/home/dev/work/personal/polar",
+    "frameworks": [
+      "nextjs",
+      "expo-router",
+      "ios-swiftui",
+      "fastapi"
+    ],
+    "subRepos": [
+      "clients",
+      "docs",
+      "handbook",
+      "server"
+    ]
+  },
+  "runnableBuilds": [
+    "vsix"
+  ],
+  "capabilities": [
+    "http",
+    "screen",
+    "migration",
+    "cli",
+    "model_hook",
+    "webhook",
+    "shared"
+  ],
+  "outputDir": "tmp/verification-runs/<build>/polar-scoped",
+  "suites": [
+    {
+      "id": "WALK",
+      "cases": [
+        {
+          "id": "WALK-SERVER",
+          "title": "Deep L1→L5 walk of server — 14 endpoints × participants+functions",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Drill each endpoint L3 (sequence) → L4 (participant file) → L5 (function flow)",
+            "Screenshot every hop"
+          ],
+          "expected": [
+            "participant order caller-before-callee",
+            "L4 lands on #/file/",
+            "L5 lands on #/flow/"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "landed_l3",
+              "landed_l4",
+              "landed_l5"
+            ]
+          },
+          "tags": [
+            "walk",
+            "server",
+            "connect"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "WALK-CLIENTS",
+          "title": "Deep L1→L5 walk of clients — 14 endpoints × participants+functions",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Drill each endpoint L3 (sequence) → L4 (participant file) → L5 (function flow)",
+            "Screenshot every hop"
+          ],
+          "expected": [
+            "participant order caller-before-callee",
+            "L4 lands on #/file/",
+            "L5 lands on #/flow/"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "landed_l3",
+              "landed_l4",
+              "landed_l5"
+            ]
+          },
+          "tags": [
+            "walk",
+            "clients",
+            "connect"
+          ],
+          "capability": null,
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "ENTRYTYPES",
+      "cases": [
+        {
+          "id": "TYPE-SERVER-DELETE",
+          "title": "server: open a DELETE entry point (feature \"backoffice\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Click a DELETE row → L3 → «module» participant → L4",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a DELETE entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "server",
+            "delete",
+            "backend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-SERVER-GET",
+          "title": "server: open a GET entry point (feature \"backoffice\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Click a GET row → L3 → «module» participant → L4",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a GET entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "server",
+            "get",
+            "backend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-SERVER-MIDDLEWARE",
+          "title": "server: open a MIDDLEWARE entry point (feature \"backoffice\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Click a MIDDLEWARE row → L3 → «module» participant → L4",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a MIDDLEWARE entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "server",
+            "middleware",
+            "backend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-SERVER-POST",
+          "title": "server: open a POST entry point (feature \"backoffice\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Click a POST row → L3 → «module» participant → L4",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a POST entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "server",
+            "post",
+            "backend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-SERVER-PATCH",
+          "title": "server: open a PATCH entry point (feature \"customer_portal\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Click a PATCH row → L3 → «module» participant → L4",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a PATCH entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "server",
+            "patch",
+            "backend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-SERVER-DB_MIGRATION",
+          "title": "server: open a DB_MIGRATION entry point (feature \"versions\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Click a DB_MIGRATION row → L3 → «module» participant → L4",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a DB_MIGRATION entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "server",
+            "db_migration",
+            "backend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-SERVER-CLI_COMMAND",
+          "title": "server: open a CLI_COMMAND entry point (feature \"scripts\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Click a CLI_COMMAND row → L3 → «module» participant → L4",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a CLI_COMMAND entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "server",
+            "cli_command",
+            "backend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-SERVER-PUT",
+          "title": "server: open a PUT entry point (feature \"oauth2\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Click a PUT row → L3 → «module» participant → L4",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a PUT entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "server",
+            "put",
+            "backend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-SERVER-MODEL_HOOK",
+          "title": "server: open a MODEL_HOOK entry point (feature \"custom_field\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Click a MODEL_HOOK row → L3 → «module» participant → L4",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a MODEL_HOOK entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "server",
+            "model_hook",
+            "backend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-SERVER-NAV_ROUTE",
+          "title": "server: open a NAV_ROUTE entry point (feature \"server/emails\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/server",
+            "Click a NAV_ROUTE row → L3 → «module» participant → L4",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a NAV_ROUTE entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "server",
+            "nav_route",
+            "backend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-DELETE",
+          "title": "clients: open a DELETE entry point (feature \"web\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a DELETE entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "delete",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-EVENT_EMIT",
+          "title": "clients: open a EVENT_EMIT entry point (feature \"web\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a EVENT_EMIT entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "event_emit",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-GET",
+          "title": "clients: open a GET entry point (feature \"web\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a GET entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "get",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-NAV_ROUTE",
+          "title": "clients: open a NAV_ROUTE entry point (feature \"web\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a NAV_ROUTE entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "nav_route",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-NETWORK",
+          "title": "clients: open a NETWORK entry point (feature \"web\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a NETWORK entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "network",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-PATCH",
+          "title": "clients: open a PATCH entry point (feature \"web\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a PATCH entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "patch",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-POST",
+          "title": "clients: open a POST entry point (feature \"web\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a POST entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "post",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-PUT",
+          "title": "clients: open a PUT entry point (feature \"web\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a PUT entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "put",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-SCREEN",
+          "title": "clients: open a SCREEN entry point (feature \"web\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a SCREEN entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "screen",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-SERVER_ACTION",
+          "title": "clients: open a SERVER_ACTION entry point (feature \"web\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a SERVER_ACTION entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "server_action",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-DI_BINDING",
+          "title": "clients: open a DI_BINDING entry point (feature \"app\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a DI_BINDING entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "di_binding",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-PUSH_HANDLER",
+          "title": "clients: open a PUSH_HANDLER entry point (feature \"app\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a PUSH_HANDLER entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "push_handler",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "TYPE-CLIENTS-WIDGET",
+          "title": "clients: open a WIDGET entry point (feature \"app\") and drill",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/features/clients",
+            "Click a screen row → screen-content",
+            "Screenshot each layer"
+          ],
+          "expected": [
+            "a WIDGET entry point exists and drills to a real diagram"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "type_present",
+              "drill_landed"
+            ]
+          },
+          "tags": [
+            "entrytype",
+            "clients",
+            "widget",
+            "frontend"
+          ],
+          "capability": null,
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "DIFF",
+      "cases": [
+        {
+          "id": "DIFF-SERVER-backoffice-comment",
+          "title": "server/backoffice: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/backoffice/organizations_v2/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-backoffice-new-symbol",
+          "title": "server/backoffice: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/backoffice/organizations_v2/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-backoffice-handler-body",
+          "title": "server/backoffice: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/backoffice/organizations_v2/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-customer-portal-comment",
+          "title": "server/customer_portal: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/customer_portal/endpoints/customer.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-customer-portal-new-symbol",
+          "title": "server/customer_portal: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/customer_portal/endpoints/customer.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-customer-portal-handler-body",
+          "title": "server/customer_portal: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/customer_portal/endpoints/customer.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-organization-comment",
+          "title": "server/organization: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/organization/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-organization-new-symbol",
+          "title": "server/organization: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/organization/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-organization-handler-body",
+          "title": "server/organization: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/organization/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-versions-comment",
+          "title": "server/versions: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/migrations/versions/2026-06-17-1034_add_meter_interval_to_product_and_.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-versions-new-symbol",
+          "title": "server/versions: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/migrations/versions/2026-06-17-1034_add_meter_interval_to_product_and_.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-versions-handler-body",
+          "title": "server/versions: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/migrations/versions/2026-06-17-1034_add_meter_interval_to_product_and_.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-integrations-comment",
+          "title": "server/integrations: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/integrations/slack/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-integrations-new-symbol",
+          "title": "server/integrations: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/integrations/slack/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-integrations-handler-body",
+          "title": "server/integrations: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/integrations/slack/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-auth-comment",
+          "title": "server/auth: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/auth/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-auth-new-symbol",
+          "title": "server/auth: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/auth/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-auth-handler-body",
+          "title": "server/auth: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/auth/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-scripts-comment",
+          "title": "server/scripts: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/scripts/assign_organization_owner.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-scripts-new-symbol",
+          "title": "server/scripts: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/scripts/assign_organization_owner.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-scripts-handler-body",
+          "title": "server/scripts: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/scripts/assign_organization_owner.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-oauth2-comment",
+          "title": "server/oauth2: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/oauth2/endpoints/oauth2.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-oauth2-new-symbol",
+          "title": "server/oauth2: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/oauth2/endpoints/oauth2.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-oauth2-handler-body",
+          "title": "server/oauth2: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/oauth2/endpoints/oauth2.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-customer-comment",
+          "title": "server/customer: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/customer/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-customer-new-symbol",
+          "title": "server/customer: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/customer/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-customer-handler-body",
+          "title": "server/customer: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/customer/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-order-comment",
+          "title": "server/order: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/order/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-order-new-symbol",
+          "title": "server/order: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/order/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-order-handler-body",
+          "title": "server/order: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/order/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-benefit-comment",
+          "title": "server/benefit: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/benefit/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-benefit-new-symbol",
+          "title": "server/benefit: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/benefit/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-benefit-handler-body",
+          "title": "server/benefit: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/benefit/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-member-comment",
+          "title": "server/member: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/member/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-member-new-symbol",
+          "title": "server/member: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/member/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-member-handler-body",
+          "title": "server/member: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/member/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-metrics-comment",
+          "title": "server/metrics: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/metrics/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-metrics-new-symbol",
+          "title": "server/metrics: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/metrics/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-metrics-handler-body",
+          "title": "server/metrics: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/metrics/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-subscription-comment",
+          "title": "server/subscription: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/subscription/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-subscription-new-symbol",
+          "title": "server/subscription: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/subscription/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-subscription-handler-body",
+          "title": "server/subscription: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/subscription/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-user-comment",
+          "title": "server/user: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/user/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-user-new-symbol",
+          "title": "server/user: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/user/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-user-handler-body",
+          "title": "server/user: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/user/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-webhook-comment",
+          "title": "server/webhook: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/webhook/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-webhook-new-symbol",
+          "title": "server/webhook: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/webhook/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-webhook-handler-body",
+          "title": "server/webhook: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/webhook/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-event-comment",
+          "title": "server/event: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/event/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-event-new-symbol",
+          "title": "server/event: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/event/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-event-handler-body",
+          "title": "server/event: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/event/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-custom-field-comment",
+          "title": "server/custom_field: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/custom_field/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-custom-field-new-symbol",
+          "title": "server/custom_field: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/custom_field/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-custom-field-handler-body",
+          "title": "server/custom_field: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/custom_field/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-license-key-comment",
+          "title": "server/license_key: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/license_key/endpoints.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-license-key-new-symbol",
+          "title": "server/license_key: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/license_key/endpoints.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-license-key-handler-body",
+          "title": "server/license_key: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/license_key/endpoints.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-middlewares-comment",
+          "title": "server/middlewares: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/middlewares.py (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-middlewares-new-symbol",
+          "title": "server/middlewares: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/middlewares.py (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-SERVER-middlewares-handler-body",
+          "title": "server/middlewares: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/server",
+            "Edit server/polar/middlewares.py (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "server",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-web-comment",
+          "title": "clients/web: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/web/src/utils/sse.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-web-new-symbol",
+          "title": "clients/web: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/web/src/utils/sse.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-web-handler-body",
+          "title": "clients/web: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/web/src/utils/sse.ts (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-app-comment",
+          "title": "clients/app: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/targets/widget/widgets.swift (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-app-new-symbol",
+          "title": "clients/app: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/targets/widget/widgets.swift (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-app-handler-body",
+          "title": "clients/app: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/targets/widget/widgets.swift (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-orbit-comment",
+          "title": "clients/orbit: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/orbit/src/components/AppShell.tsx (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-orbit-new-symbol",
+          "title": "clients/orbit: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/orbit/src/components/AppShell.tsx (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-orbit-handler-body",
+          "title": "clients/orbit: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/orbit/src/components/AppShell.tsx (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-finance-comment",
+          "title": "clients/finance: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/finance.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-finance-new-symbol",
+          "title": "clients/finance: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/finance.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-finance-handler-body",
+          "title": "clients/finance: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/finance.ts (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-notifications-comment",
+          "title": "clients/notifications: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/notifications.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-notifications-new-symbol",
+          "title": "clients/notifications: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/notifications.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-notifications-handler-body",
+          "title": "clients/notifications: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/notifications.ts (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-checkout-links-comment",
+          "title": "clients/checkout_links: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/checkout_links.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-checkout-links-new-symbol",
+          "title": "clients/checkout_links: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/checkout_links.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-checkout-links-handler-body",
+          "title": "clients/checkout_links: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/checkout_links.ts (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-organizations-comment",
+          "title": "clients/organizations: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/organizations.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-organizations-new-symbol",
+          "title": "clients/organizations: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/organizations.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-organizations-handler-body",
+          "title": "clients/organizations: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/organizations.ts (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-subscriptions-comment",
+          "title": "clients/subscriptions: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/subscriptions.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-subscriptions-new-symbol",
+          "title": "clients/subscriptions: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/subscriptions.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-subscriptions-handler-body",
+          "title": "clients/subscriptions: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/subscriptions.ts (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-checkout-comment",
+          "title": "clients/checkout: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/packages/checkout/src/providers/CheckoutProvider.tsx (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-checkout-new-symbol",
+          "title": "clients/checkout: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/packages/checkout/src/providers/CheckoutProvider.tsx (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-userOrganizations-comment",
+          "title": "clients/userOrganizations: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/userOrganizations.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-userOrganizations-new-symbol",
+          "title": "clients/userOrganizations: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/userOrganizations.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-userOrganizations-handler-body",
+          "title": "clients/userOrganizations: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/userOrganizations.ts (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-customers-comment",
+          "title": "clients/customers: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/customers.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-customers-new-symbol",
+          "title": "clients/customers: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/customers.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-orders-comment",
+          "title": "clients/orders: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/orders.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-orders-new-symbol",
+          "title": "clients/orders: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/orders.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-products-comment",
+          "title": "clients/products: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/products.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-products-new-symbol",
+          "title": "clients/products: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/products.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-custom-fields-comment",
+          "title": "clients/custom_fields: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/custom_fields.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-custom-fields-new-symbol",
+          "title": "clients/custom_fields: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/custom_fields.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-discounts-comment",
+          "title": "clients/discounts: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/discounts.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-discounts-new-symbol",
+          "title": "clients/discounts: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/discounts.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-metrics-comment",
+          "title": "clients/metrics: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/metrics.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-metrics-new-symbol",
+          "title": "clients/metrics: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/metrics.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-users-comment",
+          "title": "clients/users: comment diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/users.ts (comment)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "comment",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-users-new-symbol",
+          "title": "clients/users: new-symbol diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/users.ts (new-symbol)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "new-symbol",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "DIFF-CLIENTS-users-handler-body",
+          "title": "clients/users: handler-body diff annotates the containing layers",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Baseline-shot #/features/clients",
+            "Edit clients/apps/app/hooks/polar/users.ts (handler-body)",
+            "Wait for the auto-watcher cascade (~30s, big repo)",
+            "Screenshot the per-repo view showing ~modified",
+            "Revert byte-clean"
+          ],
+          "expected": [
+            "per-repo view shows a ~modified marker on the edited feature/file after the edit",
+            "view returns to clean after revert"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "diff_visible",
+              "reverted_clean"
+            ]
+          },
+          "tags": [
+            "diff",
+            "clients",
+            "handler-body",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "REPLAY",
+      "cases": [
+        {
+          "id": "REPLAY-SERVER",
+          "title": "Replay server's commit timeline — steps render architecture evolution",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/system-design",
+            "Trigger Replay",
+            "Pick the server repo",
+            "Step through commits",
+            "Screenshot the stepping"
+          ],
+          "expected": [
+            "replay picker opens",
+            "stepping advances and re-renders diagrams"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "replay_opened",
+              "replay_stepped"
+            ]
+          },
+          "tags": [
+            "replay",
+            "server"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REPLAY-CLIENTS",
+          "title": "Replay clients's commit timeline — steps render architecture evolution",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Open #/system-design",
+            "Trigger Replay",
+            "Pick the clients repo",
+            "Step through commits",
+            "Screenshot the stepping"
+          ],
+          "expected": [
+            "replay picker opens",
+            "stepping advances and re-renders diagrams"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "replay_opened",
+              "replay_stepped"
+            ]
+          },
+          "tags": [
+            "replay",
+            "clients"
+          ],
+          "capability": null,
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "AIREVIEW",
+      "cases": [
+        {
+          "id": "REVIEW-SERVER-backoffice",
+          "title": "Code Review context for a change in server/backoffice",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit server/polar/backoffice/organizations_v2/endpoints.py (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "server",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-SERVER-customer-portal",
+          "title": "Code Review context for a change in server/customer_portal",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit server/polar/customer_portal/endpoints/customer.py (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "server",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-SERVER-organization",
+          "title": "Code Review context for a change in server/organization",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit server/polar/organization/endpoints.py (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "server",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-SERVER-versions",
+          "title": "Code Review context for a change in server/versions",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit server/migrations/versions/2026-06-17-1034_add_meter_interval_to_product_and_.py (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "server",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-SERVER-integrations",
+          "title": "Code Review context for a change in server/integrations",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit server/polar/integrations/slack/endpoints.py (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "server",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-SERVER-auth",
+          "title": "Code Review context for a change in server/auth",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit server/polar/auth/endpoints.py (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "server",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-SERVER-scripts",
+          "title": "Code Review context for a change in server/scripts",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit server/scripts/assign_organization_owner.py (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "server",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-SERVER-oauth2",
+          "title": "Code Review context for a change in server/oauth2",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit server/polar/oauth2/endpoints/oauth2.py (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "server",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-CLIENTS-web",
+          "title": "Code Review context for a change in clients/web",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit clients/apps/web/src/utils/sse.ts (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "clients",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-CLIENTS-app",
+          "title": "Code Review context for a change in clients/app",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit clients/apps/app/targets/widget/widgets.swift (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "clients",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-CLIENTS-orbit",
+          "title": "Code Review context for a change in clients/orbit",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit clients/apps/orbit/src/components/AppShell.tsx (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "clients",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-CLIENTS-finance",
+          "title": "Code Review context for a change in clients/finance",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit clients/apps/app/hooks/polar/finance.ts (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "clients",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-CLIENTS-notifications",
+          "title": "Code Review context for a change in clients/notifications",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit clients/apps/app/hooks/polar/notifications.ts (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "clients",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-CLIENTS-checkout-links",
+          "title": "Code Review context for a change in clients/checkout_links",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit clients/apps/app/hooks/polar/checkout_links.ts (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "clients",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-CLIENTS-organizations",
+          "title": "Code Review context for a change in clients/organizations",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit clients/apps/app/hooks/polar/organizations.ts (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "clients",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        },
+        {
+          "id": "REVIEW-CLIENTS-subscriptions",
+          "title": "Code Review context for a change in clients/subscriptions",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "multirepo",
+          "route": null,
+          "steps": [
+            "Edit clients/apps/app/hooks/polar/subscriptions.ts (new symbol)",
+            "Wait for cascade",
+            "Run AI Code Review",
+            "Capture the generated review context/findings",
+            "Revert"
+          ],
+          "expected": [
+            "review runs and produces findings/context referencing the changed symbol"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "review_ran",
+              "context_captured"
+            ]
+          },
+          "tags": [
+            "aireview",
+            "clients",
+            "stateful"
+          ],
+          "capability": null,
+          "status": "untested"
+        }
+      ]
+    }
+  ]
+}

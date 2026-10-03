@@ -1,0 +1,59 @@
+name: Publish @codeatlas/mcp
+
+on:
+  push:
+    tags:
+      - 'release/mcp/**'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies (root)
+        run: npm ci
+
+      # Webview-ui is a separate Vite workspace with its own package-lock.
+      # 1.2.0 ships the React bundle inside the npm tarball so the `--browser`
+      # mode can serve diagrams without VS Code. We need `webview-ui/dist/`
+      # populated BEFORE `build-mcp-package.js` runs (which copies it in).
+      - name: Install dependencies (webview-ui)
+        working-directory: webview-ui
+        run: npm ci
+
+      - name: TypeScript type-check
+        run: npm run lint 2>&1 | grep -v "@babel/traverse" | grep "error TS" && exit 1 || true
+
+      - name: Run mcp standalone tests
+        run: npm run test:standalone
+
+      - name: Build extension bundle (dist/mcp-server.js + wasm)
+        run: npm run compile:prod
+
+      - name: Build webview-ui (dist/webview-ui/dist/ for --browser mode)
+        run: npm run build:webview
+
+      - name: Assemble mcp-package/
+        run: node scripts/build-mcp-package.js
+
+      - name: Sanity — confirm webview assets shipped
+        run: |
+          test -f mcp-package/dist/webview-ui/dist/index.html
+          test -f mcp-package/dist/mcp-server.js
+          test -f mcp-package/dist/sql-wasm.wasm
+          test -f mcp-package/dist/tree-sitter.wasm
+          ls mcp-package/dist/grammars/*.wasm | head -1 >/dev/null
+          echo "Tarball contents look correct."
+
+      - name: Publish to npm
+        working-directory: mcp-package
+        run: npm publish --access public --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_CODEATLAS_MCP }}

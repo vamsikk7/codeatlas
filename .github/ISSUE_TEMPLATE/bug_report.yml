@@ -1,0 +1,99 @@
+name: Bug report
+description: Something is broken or produces the wrong result
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing. CodeAtlas parses real codebases, so the most useful
+        reports name the **language and framework** involved — that is usually
+        what narrows it down fastest.
+
+        For security problems, please use
+        [private reporting](https://github.com/vamsikk7/codeatlas/security/advisories/new)
+        instead.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you got instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a workspace containing ...
+        2. Run `CodeAtlas: ...`
+        3. Navigate to L3 ...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: CodeAtlas version and build
+      description: 'From the CodeAtlas: Show Version command.'
+      placeholder: '9.3.0 (build 158)'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where does it happen
+      multiple: true
+      options:
+        - VS Code sidebar / webview panel
+        - Browser UI (localhost:7742)
+        - MCP server (embedded)
+        - MCP server (standalone @codeatlas/mcp)
+        - CLI
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: stack
+    attributes:
+      label: Language and framework of the analysed project
+      description: The project CodeAtlas was looking at, not CodeAtlas itself.
+      placeholder: 'TypeScript / NestJS, or Python / Django'
+    validations:
+      required: true
+
+  - type: input
+    id: env
+    attributes:
+      label: Editor and OS
+      placeholder: 'VS Code 1.95.0, macOS 15.1 (arm64)'
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: >
+        Output panel → "CodeAtlas". Please check for anything private before
+        pasting — paths and repository names often appear in logs.
+      render: shell
+
+  - type: input
+    id: repro-repo
+    attributes:
+      label: Link to a reproducing repository
+      description: Optional, and the single most helpful thing you can provide.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues
+          required: true
+        - label: I am on the latest version, or have said why not
+          required: true

@@ -1,0 +1,12 @@
+{
+  "files.exclude": {
+    "tmp": true
+  },
+  "search.exclude": {
+    "tmp": true,
+    "e2e/browser-verification/repos": true
+  },
+  "files.watcherExclude": {
+    "**/tmp/**": true
+  }
+}

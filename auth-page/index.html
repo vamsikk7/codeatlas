@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeAtlas — Sign In</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0f172a;
+      color: #f1f5f9;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 24px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    #sign-in {
+      min-width: 360px;
+    }
+
+    #success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .checkmark {
+      font-size: 52px;
+    }
+
+    .success-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .success-sub {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    #error-msg {
+      display: none;
+      color: #f87171;
+      font-size: 13px;
+      max-width: 360px;
+      text-align: center;
+      background: rgba(248, 113, 113, 0.1);
+      padding: 12px 16px;
+      border-radius: 8px;
+    }
+
+    #loading {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="logo">⬡ CodeAtlas</div>
+  <div class="subtitle">Sign in to access your workspace diagrams</div>
+  <div id="loading">Loading...</div>
+  <div id="sign-in"></div>
+  <div id="success">
+    <div class="checkmark">✓</div>
+    <div class="success-title">Signed in!</div>
+    <div class="success-sub">You can return to VS Code now.</div>
+  </div>
+  <div id="error-msg"></div>
+
+  <!--
+    Replace the data-clerk-publishable-key value with your Clerk publishable key.
+    Also update CLERK_FRONTEND_API below to match your Clerk app's frontend API URL.
+  -->
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsuY29kZWF0bGFzLmxpdmUk"
+    src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"></script>
+
+  <script>
+    window.addEventListener('load', async () => {
+      const loadingEl = document.getElementById('loading');
+
+      if (!window.Clerk) {
+        loadingEl.style.display = 'none';
+        showError('Failed to load authentication library. Check your internet connection.');
+        return;
+      }
+
+      try {
+        await window.Clerk.load({
+          afterSignInUrl: window.location.href,
+          afterSignUpUrl: window.location.href,
+        });
+
+        loadingEl.style.display = 'none';
+
+        if (window.Clerk.session) {
+          await sendToVSCode();
+        } else {
+          window.Clerk.mountSignIn(document.getElementById('sign-in'));
+          window.Clerk.addListener(async ({ session }) => {
+            if (session) await sendToVSCode();
+          });
+        }
+      } catch (err) {
+        loadingEl.style.display = 'none';
+        showError('Auth error: ' + (err && err.message ? err.message : String(err)));
+      }
+    });
+
+    async function sendToVSCode() {
+      try {
+        const token = await window.Clerk.session.getToken();
+        const user = window.Clerk.user;
+        const params = new URLSearchParams({
+          token: token,
+          userId: user.id,
+          email: (user.primaryEmailAddress && user.primaryEmailAddress.emailAddress) || '',
+          firstName: user.firstName || '',
+          lastName: user.lastName || '',
+        });
+
+        document.getElementById('sign-in').style.display = 'none';
+        const successEl = document.getElementById('success');
+        successEl.style.display = 'flex';
+
+        // Build callback URI from editor scheme + extension ID passed by the extension.
+        // Falls back to VS Code defaults if params aren't present (e.g., direct browser visit).
+        var qs = new URLSearchParams(window.location.search);
+        var scheme = qs.get('scheme') || 'vscode';
+        var extId = qs.get('source') || 'codeatlaslive.codeatlas-live';
+        window.location.href = scheme + '://' + extId + '/auth?' + params.toString();
+      } catch (err) {
+        showError('Failed to complete sign-in: ' + (err && err.message ? err.message : String(err)));
+      }
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('error-msg');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+name: Feature request
+description: Suggest a capability or an improvement
+labels: [enhancement, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please check [ROADMAP.md](https://github.com/vamsikk7/codeatlas/blob/main/ROADMAP.md)
+        first — it may already be planned, and it will tell you whether the area
+        is open-source core, commercially reserved, or an area where
+        contributions are actively wanted.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve
+      description: >
+        The underlying problem, not the solution you have in mind. This is the
+        part that determines whether the feature gets built.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you would like it to do
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Language or framework support
+        - Diagram layers (L1-L5)
+        - Diff and cascade
+        - AI Review
+        - PR Watcher
+        - MCP / AI assistant integration
+        - Export
+        - Performance
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Including other tools, and what they got wrong.
+
+  - type: dropdown
+    id: contribute
+    attributes:
+      label: Would you be willing to implement this
+      description: >
+        Not a commitment, and a "no" does not reduce the chance it gets built.
+        New language and framework support in particular is very mergeable.
+      options:
+        - 'Yes, with guidance'
+        - 'Yes, independently'
+        - 'No'
+    validations:
+      required: true

@@ -1,0 +1,87 @@
+{
+  "$schema": "Issue 610 — seed dataset for severity calibration. Extend over time.",
+  "version": 1,
+  "rubricVersion": "2026-05-24",
+  "items": [
+    {
+      "id": "cal-001",
+      "severityHuman": "critical",
+      "title": "Hardcoded JWT secret in source",
+      "snippet": "const JWT_SECRET = process.env.JWT_SECRET || 'super-secret-please-change';",
+      "category": "security",
+      "rationale": "Default fallback to literal default for a secret. Anyone with the repo can forge tokens. Production-exploitable."
+    },
+    {
+      "id": "cal-002",
+      "severityHuman": "critical",
+      "title": "SQL injection via template string",
+      "snippet": "const rows = await prisma.$queryRaw`SELECT * FROM users WHERE name = ${userInput}`;",
+      "category": "security",
+      "rationale": "Prisma $queryRaw with template-interpolated user input — classic injection. Data loss + exfiltration vector."
+    },
+    {
+      "id": "cal-003",
+      "severityHuman": "high",
+      "title": "Missing auth check on PATCH route",
+      "snippet": "router.patch('/users/:id', async (req, res) => { const updated = await prisma.user.update({ where: { id: req.params.id }, data: req.body }); res.json(updated); });",
+      "category": "security",
+      "rationale": "Update without verifying caller owns the row. Tenancy crossing — should require auth + ownership check."
+    },
+    {
+      "id": "cal-004",
+      "severityHuman": "high",
+      "title": "Password compared with ===",
+      "snippet": "if (user.password === input.password) { return signToken(user); }",
+      "category": "security",
+      "rationale": "Timing-attackable + assumes plaintext storage. Should use bcrypt.compare."
+    },
+    {
+      "id": "cal-005",
+      "severityHuman": "medium",
+      "title": "bcrypt salt rounds set to 8",
+      "snippet": "const hashed = await bcrypt.hash(password, 8);",
+      "category": "security",
+      "rationale": "Below current OWASP recommendation (12). Reduces brute-force cost by ~16×. Real but bounded risk."
+    },
+    {
+      "id": "cal-006",
+      "severityHuman": "medium",
+      "title": "console.error swallows the original stack",
+      "snippet": "try { await doWork(); } catch (err) { console.error('failed'); }",
+      "category": "code-quality",
+      "rationale": "Hides root cause from observability tooling. Real production-debugging cost but not a security issue."
+    },
+    {
+      "id": "cal-007",
+      "severityHuman": "low",
+      "title": "Loose equality on string literal",
+      "snippet": "if (req.body.role == 'admin') { allow(); }",
+      "category": "code-quality",
+      "rationale": "Style nit — works correctly for string literals. Would be `medium` if there were coercion risk; here there isn't."
+    },
+    {
+      "id": "cal-008",
+      "severityHuman": "low",
+      "title": "Anonymous handler in router.get",
+      "snippet": "router.get('/health', async (req, res) => { res.json({ ok: true }); });",
+      "category": "code-quality",
+      "rationale": "Anonymous = harder to grep and stack traces are unnamed. Maintainability hit, not correctness."
+    },
+    {
+      "id": "cal-009",
+      "severityHuman": "info",
+      "title": "JSDoc @param missing on internal helper",
+      "snippet": "function buildKey(parts: string[]): string { return parts.filter(Boolean).join(':'); }",
+      "category": "code-quality",
+      "rationale": "Documentation gap on an internal helper. No runtime impact."
+    },
+    {
+      "id": "cal-010",
+      "severityHuman": "info",
+      "title": "Inconsistent quote style",
+      "snippet": "const greeting = \"hello\";",
+      "category": "code-quality",
+      "rationale": "Lint, not review. Mentioned so the model has a calibration target for `info`."
+    }
+  ]
+}

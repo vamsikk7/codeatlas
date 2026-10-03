@@ -1,0 +1,65 @@
+tmp/
+node_modules/
+dist/
+*.vsix
+# Local workspace state. The glob covers every variant -- `.codeatlas/`,
+# `.codeatlas-sa/` (standalone) and the ad-hoc `-audit` / `-browsercheck`
+# dirs. Previously only `.codeatlas/` was listed, which left the standalone's
+# state.db publishable; these stores hold indexed content from whatever
+# workspace was open.
+.codeatlas/
+.codeatlas*/
+webview-ui/dist/
+webview-ui/node_modules/
+.DS_Store
+e2e/screenshots/
+e2e/e2e/screenshots/
+e2e/test-results/
+test-results/
+e2e/real-repos/
+.tsbuildinfo
+.claude/scheduled_tasks.lock
+mcp-package/dist/
+mcp-package/node_modules/
+mcp-package/*.tgz
+.live-verify-snapshots/
+.npmrc
+mcp-package/.npmrc
+e2e/benchmark/llm.config.json
+e2e/benchmark/results/
+
+# ─── Not for the public repository ──────────────────────────────────────────
+# Internal engineering material: ADRs, specs, defect history, agent config.
+# Excluded so an orphan-branch `git add -A` cannot carry them into the public
+# remote by accident.
+#
+# IMPORTANT: .gitignore does NOT apply to files git already tracks. All of the
+# paths below ARE tracked today (docs/ alone is 120 files). On the orphan
+# branch you must empty the index first or they will be committed anyway:
+#
+#     git checkout --orphan public/main
+#     git rm -r --cached .        # <-- without this, the entries below do nothing
+#     git add -A
+#     git status                  # confirm before committing
+#
+# Trade-off to be aware of: once these are ignored, the private repo stops
+# tracking changes to them too. The existing history keeps every past version,
+# but new edits to docs/ and the files below will be untracked going forward.
+
+docs/
+ISSUES.md
+ACTION-PLAN.md
+ACTION-PLAN-*.md
+prd.md
+UX-FINDINGS-*.md
+LIVE-VERIFY-*.md
+NOTES-*.md
+findings-*.md
+verify-*.md
+
+# Agent configuration and project instructions. CLAUDE.md documents internal
+# verification workflow, known-flaky tests and pre-existing lint errors. If you
+# would rather give contributors the architecture notes it contains, remove
+# this line and review the file for internal-only detail first.
+.claude/
+CLAUDE.md

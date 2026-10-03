@@ -1,0 +1,1571 @@
+{
+  "$schema": "internal://codeatlas/browser-verification-suite/per-repo/v1",
+  "meta": {
+    "generatedFrom": "e2e/browser-verification-suite.json",
+    "generatedFor": "js-nextjs",
+    "suiteVersion": "2.0.0",
+    "targetExtensionVersion": "9.0.30",
+    "note": "Generated artifact — regenerate with node e2e/browser-verification/generate-per-repo.mjs. Run one worker per file for parallel verification."
+  },
+  "repo": {
+    "id": "js-nextjs",
+    "category": "frontend",
+    "kind": "single",
+    "path": "e2e/real-repos/js-nextjs",
+    "frameworks": [
+      "nextjs-app"
+    ]
+  },
+  "runnableBuilds": [
+    "vsix",
+    "mcp"
+  ],
+  "capabilities": [
+    "http",
+    "screen",
+    "server_action"
+  ],
+  "baseline": {
+    "minAnonymousResolutionRate": 0,
+    "minApiCount": 10,
+    "minFeatureClusters": 15,
+    "minFileCount": 66,
+    "minFileGraphs": 66,
+    "minFlowGraphs": 105,
+    "minFlowGraphsWithDecision": 33,
+    "minGraphCount": 223,
+    "minMicroservices": 1,
+    "minMobileItemCount": 9,
+    "minRouteApiCount": 1,
+    "minSequenceGraphs": 27,
+    "notes": "auto-generated from 2026-06-11 run"
+  },
+  "baselineMetrics": {
+    "minApiCount": "total entry points in apiIndex (HTTP + non-HTTP)",
+    "minRouteApiCount": "HTTP-route entry points only",
+    "minFeatureClusters": "L2a feature clusters (community detection)",
+    "minFileCount": "indexed source files",
+    "minFileGraphs": "L4 file graphs",
+    "minFlowGraphs": "L5 flow graphs",
+    "minFlowGraphsWithDecision": "L5 flows containing >=1 decision node (control-flow depth)",
+    "minGraphCount": "total graphs across all layers",
+    "minMicroservices": "L1 service nodes",
+    "minMobileItemCount": "mobile screen/nav/network items (0 for backend repos)",
+    "minSequenceGraphs": "L3 sequence graphs",
+    "minAnonymousResolutionRate": "fraction of anonymous route handlers resolved to a named symbol"
+  },
+  "outputDir": "tmp/verification-runs/<build>/js-nextjs",
+  "mandates": [
+    "ALL REPOS: every applicable case runs against EVERY repo in `repoCatalog` (see `applicabilityRules` for how a case maps to repo categories/kinds). A case is not 'done' until it has evidence for each applicable repo.",
+    "SCREENSHOT EVERY TEST: every case MUST capture a screenshot and record an explicit ACTUAL-vs-EXPECTED visual observation — DOM/db/log/network checks are ADDITIONAL evidence, never a substitute for the screenshot. See `evidenceProtocol`.",
+    "TOOL CALLS INCLUDED: the MCP tool-call surface is a first-class dimension (suite `TOOLS`), exercised on the MCP build via JSON-RPC tools/call; each tool call also records expected-vs-actual output.",
+    "OUTPUT TO BUILD-NUMBERED tmp/: every test's evidence (screenshot, expected, actual, analysis, run-state) is written under `tmp/verification-runs/<build>/...` inside the repo. `tmp/` is already git-ignored (.gitignore), publish-ignored (.vscodeignore `tmp/**`), and VS Code-hidden (.vscode/settings.json)."
+  ],
+  "preRunReset": {
+    "required": true,
+    "rule": "BEFORE every repo run: `git -C <repoPath> checkout -- .` + `git -C <repoPath> clean -fd` to restore the repo to its ORIGINAL committed state (undo probe/feature files from prior runs). No run starts from a dirty tree. Then re-init + resync and capture the perf baseline (SETUP-04). After the run, reset again to drop probe files.",
+    "steps": [
+      "git checkout -- . && git clean -fd (original state)",
+      "re-init (time it, assert distributed for multi-repo, non-zero counts)",
+      "resync (time it, assert settles idle)",
+      "capture perf baseline -> evidence/perf.json",
+      "run the suite cases",
+      "git checkout/clean again to clean up probe files"
+    ]
+  },
+  "perfEvaluation": {
+    "capture": [
+      "reinit_ms",
+      "resync_ms",
+      "l1_open_ms",
+      "l2b_open_ms",
+      "ext_host_cpu_pct",
+      "ext_host_rss_mb"
+    ],
+    "assertAgainst": "conventions.perfBudgets",
+    "storeAt": "tmp/verification-runs/<build>/<repo>/SETUP/SETUP-04/evidence/perf.json"
+  },
+  "evidenceProtocol": {
+    "screenshot": {
+      "required": true,
+      "appliesTo": "EVERY case in EVERY suite (including TOOLS)",
+      "rule": "Capture at least one screenshot of the actual rendered state; multi-step cases capture before + after (NN-<label>.png). A case without a screenshot is INCOMPLETE regardless of other evidence."
+    },
+    "actualVsExpected": {
+      "required": true,
+      "rule": "OBSERVE the screenshot, write actual.md, then analysis.md with an explicit PASS/FAIL/BLOCKED verdict comparing actual to expected. DOM/db/log/network/perf checks are ADDITIONAL — they never replace the screenshot observation."
+    },
+    "bothBuilds": {
+      "rule": "For cases with builds:['vsix','mcp'], capture a screenshot on EACH build (:7742 and :7842) and note parity in analysis.md."
+    },
+    "toolCallEvidence": {
+      "rule": "TOOLS cases save the raw JSON-RPC request+response to evidence/network.json; when the tool drives a view (get_tour/get_impact_analysis/get_feature_pack/etc.), ALSO screenshot the rendered result."
+    },
+    "onFailure": {
+      "rule": "On FAIL: keep the failing screenshot, capture the ext-host/daemon log tail, and write a ticket line (repro + finish-line + test scenario) into analysis.md AND the repo ISSUES.md."
+    }
+  },
+  "evidenceRecordSchema": {
+    "description": "Shape of each <caseId>/result.json.",
+    "fields": {
+      "caseId": "string",
+      "suiteId": "string",
+      "repo": "string",
+      "build": "string (run build number)",
+      "buildsExercised": [
+        "vsix",
+        "mcp"
+      ],
+      "startedAt": "iso8601",
+      "finishedAt": "iso8601",
+      "route": "string",
+      "scope": "string",
+      "screenshots": [
+        "relative path(s) — REQUIRED, >=1"
+      ],
+      "expected": "string",
+      "actual": "string (observed from screenshot)",
+      "verdict": "pass | fail | blocked | n/a",
+      "additionalEvidence": {
+        "dom": "string?",
+        "db": "string?",
+        "log": "string?",
+        "network": "object?",
+        "perf": "object?"
+      },
+      "notes": "string",
+      "ticketRefs": [
+        "string"
+      ]
+    }
+  },
+  "perfBudgets": {
+    "diagramOpenMs": {
+      "target": 50,
+      "warn": 500,
+      "fail": 2000,
+      "note": "Render-only open of an already-built diagram (L1/L2b). 10-15s = a rebuild/grind bug."
+    },
+    "reinitMultiRepoMs": {
+      "target": 30000,
+      "note": "Distributed re-init of polar (4 repos). Must NOT route to monolithic syncOrchestrator."
+    },
+    "extHostIdleCpuPct": {
+      "target": 5,
+      "fail": 50,
+      "note": "After init/resync settles; a pegged core + climbing RSS = synchronous O(n^2) / grind."
+    }
+  },
+  "conventions": {
+    "routeTemplates": {
+      "description": "Repo-specific routes in cases are examples; substitute per-repo entities discovered at run time.",
+      "L1": "#/system-design",
+      "L2a": "#/features/<serviceId | repoName | workspace>",
+      "L2b": "#/apis/<clusterId | workspace>",
+      "L3": "#/sequence/<repo>/<cluster>/<file>:<handler>",
+      "L4": "#/file/<relativePath>",
+      "L5": "#/flow/<relativePath>:<functionName>"
+    },
+    "toolbar": [
+      "Menu",
+      "System",
+      "Features",
+      "APIs|Entry Points",
+      "Health",
+      "Compare",
+      "Branch",
+      "PR",
+      "Impact",
+      "Replay",
+      "Export",
+      "Ask AI",
+      "Comments",
+      "Overlays",
+      "Search",
+      "Sync",
+      "Dark"
+    ],
+    "l2aToggle": [
+      "List",
+      "Entry Points",
+      "Domains"
+    ],
+    "l2bSections": [
+      "HTTP APIs",
+      "Real-Time",
+      "Background Jobs",
+      "CLI Commands",
+      "Data Lifecycle",
+      "Request Hooks",
+      "Observability",
+      "Mobile Lifecycle",
+      "Mobile"
+    ],
+    "diffChannels": {
+      "color": {
+        "added": "green",
+        "deleted": "red",
+        "modified": "orange",
+        "unchanged": "gray"
+      },
+      "symbol": {
+        "added": "+",
+        "deleted": "-",
+        "modified": "~"
+      },
+      "border": {
+        "added": "solid",
+        "deleted": "dashed",
+        "modified": "dotted"
+      }
+    },
+    "priority": {
+      "P0": "Core drill-down / stability / data-correctness — a failure blocks release.",
+      "P1": "Important feature correctness — a failure is a shipping bug.",
+      "P2": "Polish / edge / nice-to-have."
+    },
+    "status": [
+      "untested",
+      "pass",
+      "fail",
+      "blocked",
+      "n/a"
+    ]
+  },
+  "toolCatalog": {
+    "description": "MCP tool-call surface exercised by suite TOOLS on the MCP build (JSON-RPC: initialize -> tools/list -> tools/call). Names extracted from src/mcp/mcp-tools.ts. Hidden tools (AGENT_HIDDEN_TOOLS) are exercised via tools/call directly even though they are not in the default agent-facing tools/list.",
+    "groups": {
+      "workspace_status": [
+        "get_workspace_status",
+        "list_repos",
+        "describe_snapshot_schema",
+        "query_snapshot"
+      ],
+      "entrypoints_features": [
+        "list_entrypoints",
+        "list_entrypoints_paged",
+        "get_entrypoint_pack",
+        "get_feature_pack",
+        "search_workspace",
+        "find_similar_entities"
+      ],
+      "dependencies_callgraph": [
+        "get_function_dependencies",
+        "trace_call_path",
+        "get_function_source",
+        "get_impact_analysis",
+        "get_impact_of_change",
+        "get_regression_scope"
+      ],
+      "health_architecture": [
+        "get_health_report",
+        "list_architecture_violations"
+      ],
+      "diff_overlays": [
+        "get_diff_summary",
+        "get_api_surface_diff",
+        "review_diff_with_baseline",
+        "get_coverage_overlay",
+        "get_overlay",
+        "list_overlays"
+      ],
+      "review_findings": [
+        "get_review_context",
+        "run_review",
+        "get_review_summary",
+        "list_ai_findings",
+        "search_ai_findings",
+        "get_ai_finding",
+        "get_ai_finding_counts",
+        "update_ai_finding_status",
+        "score_findings",
+        "filter_review_findings",
+        "summarise_findings",
+        "clear_findings",
+        "get_review_guidelines",
+        "set_review_guidelines",
+        "list_findings_by_guideline",
+        "propose_guideline_from_finding",
+        "review_and_fix_pack",
+        "pre_edit_brief"
+      ],
+      "tour_views": [
+        "get_tour",
+        "list_saved_views"
+      ],
+      "api_specs_chains": [
+        "export_openapi_spec",
+        "export_function_calling_spec",
+        "import_api_collection",
+        "generate_request_body",
+        "generate_chain",
+        "run_api_chain",
+        "generate_test_cases",
+        "summarise_payload",
+        "compare_workspaces"
+      ],
+      "realtime": [
+        "connect_websocket",
+        "stream_sse"
+      ]
+    },
+    "howToCall": "node dist/mcp-server.js <repo> over stdio; JSON-RPC: {method:'initialize'} -> {method:'tools/list'} -> {method:'tools/call', params:{name, arguments}}. Or via the connected client (claude mcp add <name> -- node dist/mcp-server.js <repo>).",
+    "argValidation": "callToolHandler validates required args (MCP-EVAL-3) — a missing required arg returns isError with 'missing required argument', not a crash."
+  },
+  "suites": [
+    {
+      "id": "SETUP",
+      "title": "Environment preconditions",
+      "description": "Confirm both builds are up and the workspace is initialized before running layer cases.",
+      "cases": [
+        {
+          "id": "SETUP-01",
+          "title": "VSIX dashboard reachable and initialized",
+          "priority": "P0",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "workspace",
+          "route": "#/system-design",
+          "preconditions": [
+            "VS Code open on the test workspace",
+            "Init completed (status bar shows repo count / 'CodeAtlas: N repos')"
+          ],
+          "steps": [
+            "curl http://localhost:7742/index.html",
+            "Open the dashboard tab"
+          ],
+          "expected": [
+            "HTTP 200 on :7742",
+            "Dashboard renders (not a blank/error page)",
+            "Footer shows the expected extension version"
+          ],
+          "verify": {
+            "method": "network+visual",
+            "assertions": [
+              "http_code==200",
+              "footer matches targetExtensionVersion"
+            ]
+          },
+          "tags": [
+            "smoke"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "SETUP-02",
+          "title": "MCP standalone dashboard reachable and initialized",
+          "priority": "P0",
+          "builds": [
+            "mcp"
+          ],
+          "scope": "workspace",
+          "route": "#/system-design",
+          "preconditions": [
+            "mcp-server.js daemon running on the workspace",
+            ".codeatlas-sa/ populated"
+          ],
+          "steps": [
+            "curl http://localhost:7842/index.html",
+            "Open the dashboard tab"
+          ],
+          "expected": [
+            "HTTP 200 on :7842",
+            "Same L1 content as VSIX (parity)"
+          ],
+          "verify": {
+            "method": "network+visual",
+            "assertions": [
+              "http_code==200"
+            ]
+          },
+          "tags": [
+            "smoke",
+            "parity"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "SETUP-03",
+          "title": "Extension host idle after init (no grind)",
+          "priority": "P0",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "After init settles, sample the Code Helper (Plugin) process CPU/RSS twice, 3s apart"
+          ],
+          "expected": [
+            "CPU < 5%",
+            "RSS stable (not climbing)",
+            "CodeAtlas.log not frozen mid-line"
+          ],
+          "verify": {
+            "method": "perf",
+            "assertions": [
+              "cpu<perfBudgets.extHostIdleCpuPct.fail",
+              "rss stable"
+            ]
+          },
+          "tags": [
+            "stability",
+            "perf"
+          ],
+          "regressionRefs": [
+            "feedback_callgraph_crossfile_on2",
+            "v9.0.26"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "SETUP-04",
+          "title": "Pre-run reset: git checkout -> re-init -> resync -> capture perf baseline",
+          "priority": "P0",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "preconditions": [
+            "Repo cloned/available"
+          ],
+          "steps": [
+            "In the test repo run `git checkout -- .` + `git clean -fd` to restore ORIGINAL state (drop probe/feature files from any prior run)",
+            "If a fully-fresh init is required, reset CodeAtlas state (rm -rf .codeatlas/ or .codeatlas-sa/)",
+            "Trigger re-init (CodeAtlas: Initialize Visuals); TIME it",
+            "Trigger resync; TIME it",
+            "Sample ext-host CPU/RSS after each settles",
+            "Open L1 + one L2b and measure open latency"
+          ],
+          "expected": [
+            "git status clean at original HEAD BEFORE the run starts",
+            "Re-init routes distributed for multi-repo (no monolithic hang), completes with real counts (not 0/0)",
+            "Resync distributed, settles idle",
+            "Perf within budgets: reinitMultiRepoMs / diagramOpenMs / extHostIdleCpuPct",
+            "Baseline perf numbers written to evidence/perf.json"
+          ],
+          "verify": {
+            "method": "log+perf+screenshot",
+            "assertions": [
+              "git clean before run",
+              "reinit distributed + nonzero counts",
+              "resync settles idle",
+              "perf within budgets"
+            ]
+          },
+          "regressionRefs": [
+            "feedback_reinit_worker_pool_closed",
+            "project_browser_command_routing"
+          ],
+          "tags": [
+            "setup",
+            "reset",
+            "reinit",
+            "resync",
+            "perf"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "L1",
+      "title": "L1 — System Design",
+      "description": "Services, databases, infra topology, worker nodes, cross-repo edges, and diff annotations.",
+      "cases": [
+        {
+          "id": "L1-01",
+          "title": "Workspace L1 renders all services + infra",
+          "priority": "P0",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "route": "#/system-design",
+          "steps": [
+            "Open #/system-design"
+          ],
+          "expected": [
+            "Header reads 'polar · N services' (or '<workspaceName> · N services')",
+            "One node per repo/service (clients, docs, handbook, server)",
+            "Infra nodes present where detected (DBs, brokers, SDKs)",
+            "NO 'Indexing failed' / 'pool is closed' on any node"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "service node count matches aggregator",
+              "no error card text"
+            ]
+          },
+          "regressionRefs": [
+            "feedback_reinit_worker_pool_closed"
+          ],
+          "tags": [
+            "render",
+            "stability"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "L2A",
+      "title": "L2a — Feature Areas",
+      "description": "Backend: endpoints grouped by feature (L2a+L2b merge). FE/mobile: screen list. domain:*: cluster map. List/Entry Points/Domains toggle.",
+      "cases": [
+        {
+          "id": "L2A-02",
+          "title": "Frontend L2a: screen list (not API list)",
+          "priority": "P0",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "service:clients",
+          "route": "#/features/clients",
+          "steps": [
+            "Open #/features/clients"
+          ],
+          "expected": [
+            "Header shows framework breakdown + 'N screens' (e.g. 'expo-router 281 · nextjs-app 137 · ios-swiftui 3 · 421 screens')",
+            "Rows are route/screen paths (e.g. /(main)/(website)/(landing)) with framework + page.tsx",
+            "Does NOT render the backend 'Feature APIs' grouped list"
+          ],
+          "verify": {
+            "method": "visual",
+            "assertions": [
+              "screen count present",
+              "screen rows render"
+            ]
+          },
+          "regressionRefs": [
+            "project_frontend_mobile_layer_mapping"
+          ],
+          "tags": [
+            "render",
+            "frontend"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "L2B",
+      "title": "L2b — API List / Entry Points",
+      "description": "Per-cluster or workspace-wide entry-point list with collapsible sections, search, and method tabs.",
+      "cases": [
+        {
+          "id": "L2B-01",
+          "title": "Workspace API list aggregates every entry point",
+          "priority": "P0",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "route": "#/apis/workspace",
+          "steps": [
+            "Click the toolbar APIs/Entry Points button (runCommand codeatlas.openApiExplorer)"
+          ],
+          "expected": [
+            "Lands on 'All Workspace APIs' (api-list:workspace) built from the FULL apiIndex, not one incidental cluster",
+            "Grouped by file/controller",
+            "Count matches the workspace apiIndex size"
+          ],
+          "verify": {
+            "method": "visual+db",
+            "assertions": [
+              "api count == apiIndex size",
+              "grouped by file"
+            ]
+          },
+          "regressionRefs": [
+            "TICKET-UI-1",
+            "workspaceApiListBuilder"
+          ],
+          "tags": [
+            "render",
+            "parity"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "LABEL",
+      "title": "Adaptive labeling — Entry Points vs APIs",
+      "description": "Frontend/mobile services expose 'Entry Points'; backend services expose 'APIs'. Nav tab, breadcrumb, panel stat, and tab title all adapt (v9.0.30).",
+      "cases": [
+        {
+          "id": "LABEL-01",
+          "title": "Nav tab: backend='APIs', frontend='Entry Points'",
+          "priority": "P0",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "per-service",
+          "steps": [
+            "Open #/features/server, read the toolbar L2b button",
+            "Open #/features/clients, read the toolbar L2b button"
+          ],
+          "expected": [
+            "server -> toolbar shows '⚡ APIs'",
+            "clients -> toolbar shows '⚡ Entry Points'"
+          ],
+          "verify": {
+            "method": "dom+visual",
+            "assertions": [
+              "server label=='APIs'",
+              "clients label=='Entry Points'"
+            ]
+          },
+          "regressionRefs": [
+            "UX-LABEL-1"
+          ],
+          "tags": [
+            "labeling",
+            "frontend",
+            "backend"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "LABEL-02",
+          "title": "Breadcrumb / title noun adapts on the L2b entry",
+          "priority": "P1",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "per-service",
+          "steps": [
+            "Open a backend cluster's L2b and a frontend cluster's L2b (or screen-content)"
+          ],
+          "expected": [
+            "backend breadcrumb/title 'APIs: <cluster>'",
+            "frontend breadcrumb/title 'Entry Points: <cluster>'",
+            "unknown/mixed scope defaults to 'APIs' (safe default)"
+          ],
+          "verify": {
+            "method": "dom",
+            "assertions": [
+              "title noun matches category"
+            ]
+          },
+          "regressionRefs": [
+            "UX-LABEL-1",
+            "prettifyGraphLabel category param"
+          ],
+          "tags": [
+            "labeling"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "LABEL-03",
+          "title": "L2b panel stat: 'N APIs' vs 'N entry points'",
+          "priority": "P2",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "per-service",
+          "steps": [
+            "Open a frontend/mobile cluster L2b that has non-screen records"
+          ],
+          "expected": [
+            "Backend stat reads 'N APIs'; frontend stat reads 'N entry points'"
+          ],
+          "verify": {
+            "method": "dom",
+            "assertions": [
+              "stat noun matches category"
+            ]
+          },
+          "regressionRefs": [
+            "UX-LABEL-1",
+            "ApiListPanel"
+          ],
+          "tags": [
+            "labeling"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "LABEL-04",
+          "title": "Deferred sites still show 'APIs' (documented)",
+          "priority": "P2",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Open the Explorer sidebar and the Map legend"
+          ],
+          "expected": [
+            "Sidebar 'APIs' section + Map 'APIs' legend intentionally unchanged (mixed/workspace scope)"
+          ],
+          "verify": {
+            "method": "dom",
+            "assertions": [
+              "sidebar/map still 'APIs' by design"
+            ]
+          },
+          "regressionRefs": [
+            "UX-LABEL-2"
+          ],
+          "tags": [
+            "labeling",
+            "deferred"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "TOUR",
+      "title": "Guided Tour",
+      "description": "Auto-generated architecture walkthrough + workspace meta-tour.",
+      "cases": [
+        {
+          "id": "TOUR-01",
+          "title": "Tour plays through steps",
+          "priority": "P1",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "route": "#/tour/workspace",
+          "steps": [
+            "Open the tour",
+            "Play through steps"
+          ],
+          "expected": [
+            "Steps navigate the diagram + show narration",
+            "Step messages match the current layer/entity"
+          ],
+          "verify": {
+            "method": "visual",
+            "assertions": [
+              "steps advance with narration"
+            ]
+          },
+          "regressionRefs": [
+            "BUG-POLAR-26",
+            "BUG-POLAR-27"
+          ],
+          "tags": [
+            "tour"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "TOUR-03",
+          "title": "Explore the tour by CLICKING through steps",
+          "priority": "P1",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Open the tour",
+            "CLICK Next/step through each step (do NOT just autoplay)",
+            "From a step, CLICK a highlighted node/hotspot",
+            "Screenshot every step"
+          ],
+          "expected": [
+            "Each Next click advances the tour + navigates the diagram to the step's target",
+            "Narration matches the shown layer/entity per step",
+            "Clicking a step hotspot drills into that entity",
+            "Screenshot per step shows the correct focused node"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "each click advances + navigates",
+              "hotspot click drills in",
+              "screenshots per step"
+            ]
+          },
+          "tags": [
+            "tour",
+            "click-through"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "SEARCH",
+      "title": "Search",
+      "description": "Search APIs, files, clusters, services; results navigate to the right layer.",
+      "cases": [
+        {
+          "id": "SEARCH-01",
+          "title": "Search finds and navigates to entities",
+          "priority": "P1",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Toolbar Search",
+            "Query a known handler / file / cluster"
+          ],
+          "expected": [
+            "Results grouped by kind (Function/File/Cluster/Service)",
+            "Selecting a Cluster opens its L2b with the adaptive noun (APIs/Entry Points)"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "results navigate correctly"
+            ]
+          },
+          "regressionRefs": [
+            "queryHandlers label"
+          ],
+          "tags": [
+            "search"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "EXPORT",
+      "title": "Export Docs",
+      "description": "Markdown + Mermaid architecture documentation.",
+      "cases": [
+        {
+          "id": "EXPORT-01",
+          "title": "Export produces Markdown + Mermaid",
+          "priority": "P2",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Toolbar Export"
+          ],
+          "expected": [
+            "Markdown doc generated with Mermaid diagrams for the layers",
+            "No crash on large workspaces (streamed)"
+          ],
+          "verify": {
+            "method": "visual",
+            "assertions": [
+              "export completes"
+            ]
+          },
+          "tags": [
+            "export"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "LIFECYCLE",
+      "title": "Re-init / Resync stability",
+      "description": "Distributed routing, no monolithic hang, correct completion counts, fresh worker pool.",
+      "cases": [
+        {
+          "id": "LIFECYCLE-02",
+          "title": "L1 renders healthy after manual re-init",
+          "priority": "P0",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "workspace",
+          "route": "#/system-design",
+          "steps": [
+            "After re-init, reload #/system-design"
+          ],
+          "expected": [
+            "All service cards show 'Explore features' (no 'Indexing failed')"
+          ],
+          "verify": {
+            "method": "visual",
+            "assertions": [
+              "no indexing-failed card"
+            ]
+          },
+          "regressionRefs": [
+            "feedback_reinit_worker_pool_closed"
+          ],
+          "tags": [
+            "stability",
+            "reinit"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "PERF",
+      "title": "Performance / latency",
+      "description": "Diagram open latency, no synchronous O(n^2) grind, merge-view caching.",
+      "cases": [
+        {
+          "id": "PERF-01",
+          "title": "L1 / L2b open is render-only (fast)",
+          "priority": "P0",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Open L1, then open an L2b entry point (already-built diagrams)",
+            "Measure open latency"
+          ],
+          "expected": [
+            "Open latency within diagramOpenMs budget (target ~ms, not 10-15s)",
+            "No rebuild on open (mergeGraphsForView cached, L1 WeakMap cache)"
+          ],
+          "verify": {
+            "method": "perf+log",
+            "assertions": [
+              "open<perfBudgets.diagramOpenMs.fail",
+              "no rebuild in log"
+            ]
+          },
+          "regressionRefs": [
+            "L1/L2 open latency fix"
+          ],
+          "tags": [
+            "perf"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "MOBILE",
+      "title": "Mobile / FE detection",
+      "description": "Screens, push handlers, background tasks, lifecycle, deep links, widgets, content providers.",
+      "cases": [
+        {
+          "id": "MOBILE-01",
+          "title": "Navigable screens (not every composable) counted as screens",
+          "priority": "P1",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "service:clients",
+          "steps": [
+            "Inspect the FE/mobile screen count vs the raw composable count"
+          ],
+          "expected": [
+            "Only navigable screens (NavHost destinations / *Screen / Activity/Fragment) counted; pure UI components moved to 'internal modules'",
+            "Headline API count excludes SCREEN/NAV_ROUTE"
+          ],
+          "verify": {
+            "method": "visual+db",
+            "assertions": [
+              "screen count is navigable-only"
+            ]
+          },
+          "regressionRefs": [
+            "TICKET-MOBILE-1"
+          ],
+          "tags": [
+            "mobile"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "MOBILE-02",
+          "title": "Mobile Lifecycle section (push/bg-task/lifecycle/deep-link/widget)",
+          "priority": "P2",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "service:clients",
+          "steps": [
+            "Inspect the Mobile Lifecycle L2b section on a mobile repo"
+          ],
+          "expected": [
+            "PUSH_HANDLER / BG_TASK / LIFECYCLE / DEEP_LINK / WIDGET / CONTENT_PROVIDER records surface with proper markers"
+          ],
+          "verify": {
+            "method": "visual",
+            "assertions": [
+              "mobile lifecycle rows present"
+            ]
+          },
+          "tags": [
+            "mobile",
+            "non-api"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "PARITY",
+      "title": "VSIX <-> MCP parity",
+      "description": "Every dual-build behavior must match across :7742 and :7842.",
+      "cases": [
+        {
+          "id": "PARITY-02",
+          "title": "openApiExplorer lands on the same workspace api-list on both builds",
+          "priority": "P1",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Click the toolbar APIs/Entry Points button on both builds"
+          ],
+          "expected": [
+            "Both land on api-list:workspace with the same entry-point count (shared workspaceApiListBuilder)"
+          ],
+          "verify": {
+            "method": "visual",
+            "assertions": [
+              "same landing + count"
+            ]
+          },
+          "regressionRefs": [
+            "TICKET-UI-1"
+          ],
+          "tags": [
+            "parity"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "DETECT",
+      "title": "Framework + language detection (baseline-asserted)",
+      "description": "Per repo: the correct framework/language is identified, files parse, and live counts meet the known-good baseline (injected as `baseline` from expectations.json). This is the cross-language/cross-framework backbone — every repo runs it.",
+      "cases": [
+        {
+          "id": "DETECT-01",
+          "title": "Framework + language correctly identified; files parse clean",
+          "priority": "P0",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Open L1",
+            "Read the service technology label(s)",
+            "Check the CodeAtlas log for parse failures"
+          ],
+          "expected": [
+            "L1 service technology matches the repo's framework(s) (repo.frameworks)",
+            "Language detected correctly (tree-sitter for Go/Rust/PHP/Ruby/Java/Kotlin/Swift/C#/Dart/Python; Babel for JS/TS)",
+            "No parse failures for SUPPORTED source files (benign template files e.g. Nunjucks/Jinja excepted)"
+          ],
+          "verify": {
+            "method": "visual+dom+log",
+            "assertions": [
+              "technology matches repo.frameworks",
+              "no unexpected parse failures"
+            ]
+          },
+          "tags": [
+            "detect"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "DETECT-02",
+          "title": "Detection counts meet the known-good baseline",
+          "priority": "P0",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Read live counts: L1 services, L2a clusters, L2b apis, total graphs, L3 sequences, L4 files, L5 flows",
+            "Compare to injected `baseline` (minMicroservices, minFeatureClusters, minApiCount, minGraphCount, minSequenceGraphs, minFileGraphs, minFlowGraphs)"
+          ],
+          "expected": [
+            "Every live count >= its baseline threshold",
+            "Mobile repos meet minMobileItemCount; backend repos meet minRouteApiCount",
+            "A count BELOW baseline is a detection regression (fail + log)"
+          ],
+          "verify": {
+            "method": "visual+dom+db",
+            "assertions": [
+              "all counts >= baseline",
+              "screenshot shows the counts"
+            ]
+          },
+          "regressionRefs": [
+            "expectations.json",
+            "verify:real"
+          ],
+          "tags": [
+            "detect",
+            "baseline"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "ENTRYPOINTS",
+      "title": "Framework-specific entry-point kinds",
+      "description": "Each repo verifies the entry-point KINDS its framework emits (capability-gated: a case runs only when the repo's `capabilities` include it) AND that kinds a framework does NOT emit are absent (no hallucination). This is where per-framework detection depth is proven.",
+      "cases": [
+        {
+          "id": "ENTRY-NOHALLUCINATION",
+          "title": "No hallucinated entry-point kinds for this framework",
+          "priority": "P1",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Scan the L2b sections",
+            "Cross-check against the repo's `capabilities`"
+          ],
+          "expected": [
+            "Only entry-point kinds the framework actually emits are present",
+            "No spurious JOB/MQ/CLI/GraphQL sections on a plain REST repo (empty buckets stay hidden)",
+            "Screenshot shows only the expected sections"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "no unexpected sections",
+              "buckets match capabilities"
+            ]
+          },
+          "tags": [
+            "entrypoint",
+            "no-hallucination"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "RENDERFLOW",
+      "title": "Frontend / mobile drill-down",
+      "description": "FE/mobile layers differ from backend: L2b is the screen-content 5-section panel; L3 is a render flow; L4 is component<->hook<->data. Capability `screen` gates these; runs on frontend/mobile/fullstack + polar clients.",
+      "cases": [
+        {
+          "id": "RENDER-01",
+          "title": "Screen-content L2b (5-section) renders",
+          "priority": "P0",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "service:clients",
+          "capability": "screen",
+          "steps": [
+            "Open a screen's L2b (screen-content:)"
+          ],
+          "expected": [
+            "Five sections render: Interactions / Data sources / Lifecycle / Nav-in / Nav-out (+ collapsible Visual elements)",
+            "Zero-item sections show '(0)', not hidden",
+            "Labeled 'Entry Points' not 'APIs' (adaptive)"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "5 sections present",
+              "entry-points label"
+            ]
+          },
+          "regressionRefs": [
+            "v2 phase 4 #485",
+            "UX-LABEL-1"
+          ],
+          "tags": [
+            "frontend",
+            "mobile",
+            "screen"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "RENDER-02",
+          "title": "Screen L3 render flow + L4 component<->hook<->data",
+          "priority": "P1",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "service:clients",
+          "capability": "screen",
+          "steps": [
+            "From a screen, drill to L3 (render flow)",
+            "Drill to L4 (component/hook/data graph)"
+          ],
+          "expected": [
+            "L3 shows the screen's render flow (not a backend participant sequence)",
+            "L4 shows component <-> hook <-> data-source edges (useSWR/useQuery/fetch, Redux/Context/Zustand)"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              "render flow renders",
+              "component-hook-data graph renders"
+            ]
+          },
+          "regressionRefs": [
+            "project_frontend_mobile_layer_mapping"
+          ],
+          "tags": [
+            "frontend",
+            "mobile",
+            "screen"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "ANCHOR",
+      "title": "Anchoring + source navigation",
+      "description": "Nodes must anchor to the right source (file:line / route->controller), deep-links restore, and anchors survive rebuilds — the join key for the whole overlay ecosystem.",
+      "cases": [
+        {
+          "id": "ANCHOR-02",
+          "title": "Deep-link hash route restores the exact graph",
+          "priority": "P1",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Copy a layer's hash route",
+            "Open it fresh in a new tab"
+          ],
+          "expected": [
+            "The exact graph + scope is restored from the deep-link (tolerant flow-id resolution for class-qualified names)"
+          ],
+          "verify": {
+            "method": "visual",
+            "assertions": [
+              "deep-link restores graph"
+            ]
+          },
+          "regressionRefs": [
+            "TICKET-UI-3",
+            "project_browser_first_shift"
+          ],
+          "tags": [
+            "anchor",
+            "deep-link"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "CONNECT",
+      "title": "Connected drill-through — multiple L3->L4->L5 per feature",
+      "description": "After L1->L2, walk N endpoints (default 3, --features N) and drill each L3 (sequence) -> L4 (file, via a participant click) -> L5 (flow, via a message click), screenshotting EVERY hop. Proves the chain is actually navigable end-to-end, that participant order is correct, and that L4 nodes are interactive. The capture engine runs this suite via the feature-walk. Runs on every repo (backend chain; FE/mobile via RENDERFLOW).",
+      "cases": [
+        {
+          "id": "CONNECT-03",
+          "title": "Tour covers at least one step per feature (random)",
+          "priority": "P2",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Open the tour",
+            "For each feature, play/click at least one (random) step and screenshot"
+          ],
+          "expected": [
+            "Each feature is represented by >=1 tour step; the step navigates to a real node in that feature and narrates it",
+            "Screenshot per sampled step"
+          ],
+          "verify": {
+            "method": "visual+dom",
+            "assertions": [
+              ">=1 tour step per feature",
+              "step navigates + narrates"
+            ]
+          },
+          "tags": [
+            "connect",
+            "tour"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "MAP",
+      "title": "Knowledge map + business domains",
+      "description": "Knowledge graph + business-domain views — captured per repo.",
+      "cases": [
+        {
+          "id": "MAP-01",
+          "title": "Knowledge graph renders",
+          "priority": "P1",
+          "builds": [
+            "vsix",
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Open #/map/workspace",
+            "screenshot"
+          ],
+          "expected": [
+            "Knowledge map renders nodes + edges across the workspace (not blank)"
+          ],
+          "verify": {
+            "method": "visual",
+            "assertions": [
+              "map renders with nodes"
+            ]
+          },
+          "tags": [
+            "map",
+            "knowledge-graph"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "MAP-02",
+          "title": "Business domains renders",
+          "priority": "P2",
+          "builds": [
+            "vsix"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "Open #/domain/workspace",
+            "screenshot"
+          ],
+          "expected": [
+            "Business-domain clusters render"
+          ],
+          "verify": {
+            "method": "visual",
+            "assertions": [
+              "domains render"
+            ]
+          },
+          "tags": [
+            "map",
+            "domains"
+          ],
+          "status": "untested"
+        }
+      ]
+    },
+    {
+      "id": "TOOLS",
+      "title": "MCP tool-call surface",
+      "description": "Exercise the MCP tools over JSON-RPC on the standalone daemon (:7842). Each case saves the raw request+response to evidence/network.json AND a screenshot (of the rendered view where the tool drives one, else of the daemon/client response). Runs on every repo (per applicabilityRules; heavyReposMcpOnly still apply).",
+      "cases": [
+        {
+          "id": "TOOLS-01",
+          "title": "initialize -> tools/list returns the agent-facing tool set",
+          "priority": "P0",
+          "builds": [
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "JSON-RPC initialize",
+            "tools/list"
+          ],
+          "expected": [
+            "Handshake succeeds",
+            "tools/list returns the agent-facing tools (AGENT_HIDDEN_TOOLS excluded)",
+            "No error"
+          ],
+          "verify": {
+            "method": "network+screenshot",
+            "assertions": [
+              "tools/list non-empty",
+              "hidden tools absent from default list"
+            ]
+          },
+          "tags": [
+            "mcp",
+            "tools"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "TOOLS-02",
+          "title": "workspace status + repos",
+          "priority": "P0",
+          "builds": [
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "tools/call get_workspace_status",
+            "tools/call list_repos",
+            "tools/call describe_snapshot_schema"
+          ],
+          "expected": [
+            "get_workspace_status returns real file/api/entry-point counts (matches DB, NOT 0/0)",
+            "list_repos returns each repo with status=ready",
+            "schema describes the snapshot tables"
+          ],
+          "verify": {
+            "method": "network+db+screenshot",
+            "assertions": [
+              "counts match DB",
+              "repos ready"
+            ]
+          },
+          "regressionRefs": [
+            "feedback_reinit_worker_pool_closed"
+          ],
+          "tags": [
+            "mcp",
+            "tools"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "TOOLS-03",
+          "title": "entry-point + feature packs",
+          "priority": "P1",
+          "builds": [
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "tools/call list_entrypoints",
+            "list_entrypoints_paged",
+            "get_entrypoint_pack (one entry point)",
+            "get_feature_pack (one feature)"
+          ],
+          "expected": [
+            "list_entrypoints matches the L2b entry-point set for the repo's category",
+            "packs return handler + sequence + file + flow context",
+            "paged variant paginates without dropping items"
+          ],
+          "verify": {
+            "method": "network+screenshot",
+            "assertions": [
+              "entrypoints match L2b",
+              "pack non-empty"
+            ]
+          },
+          "tags": [
+            "mcp",
+            "tools"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "TOOLS-09",
+          "title": "tour + saved views (drives a rendered view)",
+          "priority": "P2",
+          "builds": [
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "tools/call get_tour",
+            "tools/call list_saved_views",
+            "Open the resulting tour route in the browser"
+          ],
+          "expected": [
+            "get_tour returns ordered steps",
+            "Opening the tour renders the steps in the browser (screenshot the tour view)"
+          ],
+          "verify": {
+            "method": "network+screenshot",
+            "assertions": [
+              "tour steps returned",
+              "tour renders"
+            ]
+          },
+          "tags": [
+            "mcp",
+            "tools",
+            "tour"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "TOOLS-11",
+          "title": "required-argument validation (no crash)",
+          "priority": "P1",
+          "builds": [
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "tools/call a tool that has required args, omitting them"
+          ],
+          "expected": [
+            "Returns isError with 'missing required argument ...' — does NOT crash the daemon"
+          ],
+          "verify": {
+            "method": "network+screenshot",
+            "assertions": [
+              "graceful isError, daemon alive"
+            ]
+          },
+          "regressionRefs": [
+            "MCP-EVAL-3"
+          ],
+          "tags": [
+            "mcp",
+            "tools",
+            "robustness"
+          ],
+          "status": "untested"
+        },
+        {
+          "id": "TOOLS-12",
+          "title": "search + similarity + snapshot query",
+          "priority": "P2",
+          "builds": [
+            "mcp"
+          ],
+          "scope": "workspace",
+          "steps": [
+            "tools/call search_workspace",
+            "find_similar_entities",
+            "query_snapshot"
+          ],
+          "expected": [
+            "search_workspace returns entities across kinds",
+            "similarity returns related entities",
+            "query_snapshot runs a structured query against the snapshot"
+          ],
+          "verify": {
+            "method": "network+screenshot",
+            "assertions": [
+              "search non-empty",
+              "query returns rows"
+            ]
+          },
+          "tags": [
+            "mcp",
+            "tools",
+            "search"
+          ],
+          "status": "untested"
+        }
+      ]
+    }
+  ]
+}

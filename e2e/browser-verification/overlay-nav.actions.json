@@ -1,0 +1,25 @@
+{
+  "OVERLAYNAV-AIR-WELLFORMED": [
+    { "goto": "#/system-design", "wait": 3000, "shot": "L1-clean" },
+    { "injectMessage": { "type": "aiReviewResult", "result": { "summary": { "total": 1, "error": 1, "warning": 0, "info": 0 }, "items": [ { "id": "f1", "graphId": "microservice:workspace", "targetId": "service_1", "title": "Test", "body": "d", "category": "security", "severity": "error", "status": "open", "entryPointId": "ep1", "bindings": [ { "graphId": "microservice:workspace", "targetId": "service_1", "layer": "microservice" } ] } ], "reviewedFiles": ["a.ts"], "failures": [], "byGraph": { "microservice:workspace": [ { "id": "f1", "targetId": "service_1", "severity": "error", "status": "open", "title": "Test" } ] }, "meta": { "model": "gpt", "durationMs": 1200, "totalTokens": 100 } } }, "wait": 900 },
+    { "injectMessage": { "type": "aiFindings", "items": [ { "id": "f1", "title": "Test", "severity": "error", "status": "open", "entryPointId": "ep1", "bindings": [ { "graphId": "microservice:workspace", "targetId": "service_1", "layer": "microservice" } ] } ], "counts": { "byGraph": { "microservice:workspace": { "error": 1, "warning": 0, "info": 0, "total": 1 } }, "byEntryPoint": { "ep1": 1 }, "bySeverity": { "error": 1, "warning": 0, "info": 0 }, "total": 1 } }, "wait": 1600, "shot": "L1-aireview-active" },
+    { "click": ".react-flow__node", "nth": 0, "wait": 3500, "shot": "after-drill-expect-L2-no-crash", "expectHashPrefix": "#/features/" }
+  ],
+  "OVERLAYNAV-AIR-MALFORMED": [
+    { "goto": "#/system-design", "wait": 3000, "shot": "L1-clean" },
+    { "injectMessage": { "type": "aiReviewResult", "result": { "items": [ { "id": "f1", "title": "T", "severity": "high", "targetId": "service_1" } ], "byGraph": { "microservice:workspace": [ { "id": "f1", "title": "T", "severity": "high", "targetId": "service_1" } ] }, "meta": { "model": "x" } } }, "wait": 900 },
+    { "injectMessage": { "type": "aiFindings", "items": [ { "id": "f1", "title": "T", "severity": "high", "targetId": "service_1" } ], "counts": { "high": 1, "total": 1 } }, "wait": 1600, "shot": "L1-malformed-overlay" },
+    { "click": ".react-flow__node", "nth": 0, "wait": 3500, "shot": "after-drill-must-not-crash", "expectHashPrefix": "#/features/" }
+  ],
+  "OVERLAYNAV-AIR-COUNTSONLY": [
+    { "goto": "#/system-design", "wait": 3000, "shot": "L1-clean" },
+    { "injectMessage": { "type": "aiFindings", "counts": { "total": 5 } }, "wait": 1500, "shot": "L1-countsonly-nobygraph" },
+    { "goto": "#/features/service:main", "wait": 3000, "shot": "L2-must-not-crash" }
+  ],
+  "OVERLAYNAV-AIR-NOBINDINGS": [
+    { "goto": "#/system-design", "wait": 3000, "shot": "L1-clean" },
+    { "injectMessage": { "type": "aiReviewResult", "result": { "summary": { "total": 1, "error": 1, "warning": 0, "info": 0 }, "items": [ { "id": "f2", "title": "NB", "severity": "error", "status": "open" } ], "byGraph": {}, "meta": { "model": "x" } } }, "wait": 700 },
+    { "injectMessage": { "type": "aiFindings", "items": [ { "id": "f2", "title": "NB", "severity": "error", "status": "open" } ], "counts": { "total": 1, "bySeverity": { "error": 1, "warning": 0, "info": 0 } } }, "wait": 1500, "shot": "L1-finding-no-bindings" },
+    { "click": ".react-flow__node", "nth": 0, "wait": 3500, "shot": "after-drill-must-not-crash" }
+  ]
+}

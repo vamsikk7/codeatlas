@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build extension + webview
+        run: npm run package
+
+      # Real-world verification suite (ADR-008): clones ~33 framework repos,
+      # runs the full pipeline against each, asserts no regression vs baseline.
+      # Cache key on repos.json content so unchanged manifests skip re-cloning.
+      - name: Restore real-repo cache
+        id: real-repo-cache
+        uses: actions/cache@v4
+        with:
+          path: e2e/real-repos
+          key: real-repos-${{ hashFiles('e2e/real-projects/repos.json') }}
+
+      - name: Fetch real-world projects
+        if: steps.real-repo-cache.outputs.cache-hit != 'true'
+        run: npm run fetch:real-projects
+
+      - name: Verify against real-world repos (regression baseline)
+        run: npm run verify:real
+
+      - name: Verify invariants + integrity + L1-L5 layers
+        run: npm run verify:real:invariants
+
+      - name: Package VSIX
+        # BUG-POLAR-30: do NOT use --no-dependencies. It makes vsce skip the
+        # node_modules traversal, which drops the `.vscodeignore` re-includes
+        # (`!node_modules/chokidar/**`, `!node_modules/readdirp/**`). Without
+        # them the bundled `dist/mcp-server.js` (which the extension launches for
+        # the browser-first MCP daemon) dies at startup with "Cannot find package
+        # 'chokidar'". `.vscodeignore` still excludes every other node_modules
+        # entry, so the VSIX stays small — only chokidar + readdirp ship.
+        run: npx @vscode/vsce package -o codeatlas.vsix
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: codeatlas-vsix
+          path: codeatlas.vsix
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: codeatlas.vsix
+          generate_release_notes: true

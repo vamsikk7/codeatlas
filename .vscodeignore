@@ -1,0 +1,123 @@
+# Source code (compiled to dist/ by esbuild)
+src/**
+webview-ui/src/**
+
+# Build config / tooling
+node_modules/**
+# Issue #790 #6 — chokidar v5 is ESM-only. esbuild marks it external
+# (see esbuild.js); the extension loads it via dynamic `import()` at
+# activation. Ship just chokidar + readdirp so the real Node ESM loader
+# can find them; everything else under node_modules stays excluded.
+!node_modules/chokidar/**
+!node_modules/readdirp/**
+webview-ui/node_modules/**
+webview-ui/package.json
+webview-ui/package-lock.json
+webview-ui/tsconfig.json
+webview-ui/tsconfig.node.json
+webview-ui/vite.config.ts
+webview-ui/vitest.config.ts
+webview-ui/index.html
+esbuild.js
+tsconfig.json
+vitest.config.ts
+scripts/**
+
+# Tests and debug files
+**/__tests__/**
+**/*.test.ts
+**/*.test.tsx
+test_*.ts
+test_*.js
+test-*.ts
+test-*.js
+debug_test.js
+parse_state.js
+# Stray dev vitest/probe configs — must never ship in the VSIX (release audit).
+# The bare `vitest.config.ts` was excluded but the `_probe*` variants slipped in.
+_probe*
+**/*.vitest.config.ts
+
+# E2E tests (Playwright — dev only, not needed at runtime)
+e2e/**
+
+# Standalone MCP npm package — published separately via @codeatlas/mcp on npm.
+# Contains .npmrc with publish token; must not ship inside the VSIX.
+mcp-package/**
+
+# Internal live-verify snapshot logs — developer-only, not shipped to users.
+.live-verify-snapshots/**
+tmp/**
+
+# Internal UX findings / live-verify run reports — date-stamped dev notes,
+# not user-facing docs. Always excluded from the published VSIX.
+UX-FINDINGS-*.md
+LIVE-VERIFY-*.md
+verify-*.md
+ACTION-PLAN-*.md
+NOTES-*.md
+findings-*.md
+
+# Governance docs — meaningful in the repository, noise in the VSIX.
+# NOTE: LICENSE, NOTICE and THIRD-PARTY-NOTICES.md are deliberately NOT
+# excluded. Apache-2.0 requires the NOTICE file to travel with the
+# distribution, and THIRD-PARTY-NOTICES.md carries the tree-sitter grammar
+# attribution for the .wasm files shipped in grammars/.
+CODE_OF_CONDUCT.md
+COMMERCIAL.md
+TRADEMARK.md
+ROADMAP.md
+PRIVACY.md
+SECURITY.md
+
+# Dev / example content
+examples/**
+auth-page/**
+controllers/**
+app.js
+db.js
+prd.md
+CLAUDE.md
+CONTRIBUTING.md
+ISSUES.md
+.gitignore
+.github/**
+docs/**
+test-results/**
+ACTION-PLAN.md
+
+# OS / editor junk
+.DS_Store
+**/.DS_Store
+Thumbs.db
+.vscode/**
+.vscodeignore
+
+# Lock file (not needed at runtime, adds ~10MB)
+package-lock.json
+
+# Sensitive / runtime state
+.codeatlas/**
+.codeatlas-sa/**
+.codeatlas-sa-audit/**
+.codeatlas-sa-browsercheck/**
+.claude/**
+
+# Stale dist artifacts (esbuild supersedes individual compiled files)
+dist/**/*.map
+dist/**/*.d.ts
+dist/**/*.d.ts.map
+dist/core/**
+dist/views/**
+
+# IMPORTANT: These must be INCLUDED (not in this ignore list):
+# - dist/extension.js        (main entry point)
+# - dist/tree-sitter.wasm    (parser runtime)
+# - grammars/*.wasm           (language grammars)
+# - webview-ui/dist/**        (browser UI served by WsBridge)
+# - package.json              (extension manifest)
+# - README.md                 (marketplace page)
+# - LICENSE                   (Apache-2.0 text)
+# - NOTICE                    (required by Apache-2.0 section 4(d))
+# - THIRD-PARTY-NOTICES.md    (grammar + dependency attribution)
+# - icon.png                  (marketplace icon)

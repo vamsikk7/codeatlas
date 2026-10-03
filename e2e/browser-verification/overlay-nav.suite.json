@@ -1,0 +1,68 @@
+{
+  "$schema": "overlay-nav",
+  "meta": {
+    "name": "overlay-nav",
+    "note": "Cross-feature interaction matrix: an OVERLAY (AI review findings, …) is active on a diagram, THEN the user navigates/drills. Regression-guards BUG-AIREVIEW-BLOCKS-L2NAV — an unguarded overlay render used to crash the whole diagram to a blank/error-boundary, so the next drill click died. Overlay state is injected via the {injectMessage} primitive (a server→webview MessageEvent), so coverage needs NO live LLM/backend. The crash flag (crashed/blank per frame) is the pass/fail signal: a diagram must survive ANY overlay/data state. Deliberately feeds INCOMPLETE payloads (missing byGraph/summary/bindings/top-level graphId) — the exact shapes that crashed."
+  },
+  "repo": { "id": "overlay-nav", "category": "dogfood", "kind": "backend", "path": "/home/dev/work/node-express-realworld-example-app", "subRepos": null },
+  "runnableBuilds": ["vsix"],
+  "capabilities": ["http"],
+  "suites": [
+    {
+      "id": "OVERLAYNAV",
+      "cases": [
+        {
+          "id": "OVERLAYNAV-AIR-WELLFORMED",
+          "title": "AI review active (well-formed) on L1 → drill to L2 without crashing",
+          "priority": "P0",
+          "builds": ["vsix"],
+          "scope": "workspace",
+          "steps": ["Open L1 System Design", "Inject a well-formed AI-review result + findings (overlay active)", "Click a service node to drill to L2", "Assert: no crash/blank, L2 renders"],
+          "expected": ["diagram survives the active overlay (no 'Something went wrong', not blank)", "node click drills to #/features/ (or at least does not crash)"],
+          "verify": { "method": "visual+dom", "assertions": ["not crashed", "not blank", "reached L2 or stayed healthy"] },
+          "tags": ["overlay", "aireview", "navigation", "smoke"],
+          "status": "untested"
+        },
+        {
+          "id": "OVERLAYNAV-AIR-MALFORMED",
+          "title": "AI review active (MALFORMED: no summary, items lack top-level graphId) on L1 → drill L2 without crashing",
+          "priority": "P0",
+          "builds": ["vsix"],
+          "scope": "workspace",
+          "steps": ["Open L1", "Inject a MALFORMED aiReviewResult (no summary; items carry only bindings, no flat graphId) + malformed aiFindings (counts without byGraph)", "Click a service node", "Assert: overlay render is contained — diagram never blanks / error-boundary"],
+          "expected": ["diagram survives the malformed overlay (AiReviewSafe boundary contains any throw)", "node click still dispatches navigation (no blank app)"],
+          "verify": { "method": "visual+dom", "assertions": ["not crashed", "not blank"] },
+          "tags": ["overlay", "aireview", "navigation", "malformed", "regression"],
+          "regressionRefs": ["BUG-AIREVIEW-BLOCKS-L2NAV"],
+          "status": "untested"
+        },
+        {
+          "id": "OVERLAYNAV-AIR-COUNTSONLY",
+          "title": "AI review counts-only update without byGraph → open L2 without crashing",
+          "priority": "P1",
+          "builds": ["vsix"],
+          "scope": "workspace",
+          "steps": ["Open L1", "Inject aiFindings with a counts object missing byGraph (the AiReviewLayerChip poison)", "Navigate to L2", "Assert: layer chip / render never throws"],
+          "expected": ["counts normalization keeps byGraph present; no crash on any layer"],
+          "verify": { "method": "visual+dom", "assertions": ["not crashed", "not blank"] },
+          "tags": ["overlay", "aireview", "malformed", "regression"],
+          "regressionRefs": ["BUG-AIREVIEW-BLOCKS-L2NAV"],
+          "status": "untested"
+        },
+        {
+          "id": "OVERLAYNAV-AIR-NOBINDINGS",
+          "title": "AI finding without a bindings array → render + drill without crashing",
+          "priority": "P1",
+          "builds": ["vsix"],
+          "scope": "workspace",
+          "steps": ["Open L1", "Inject an aiFindings finding with NO bindings array", "Drill to L2", "Assert: findingsForGraph / recomputeCounts tolerate the missing bindings"],
+          "expected": ["a binding-less finding contributes nothing and never throws bindings.some()"],
+          "verify": { "method": "visual+dom", "assertions": ["not crashed", "not blank"] },
+          "tags": ["overlay", "aireview", "malformed", "regression"],
+          "regressionRefs": ["BUG-AIREVIEW-BLOCKS-L2NAV"],
+          "status": "untested"
+        }
+      ]
+    }
+  ]
+}

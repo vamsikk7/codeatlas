@@ -1,0 +1,82 @@
+{
+  "name": "@codeatlas/mcp",
+  "version": "5.3.0",
+  "buildNumber": 0,
+  "description": "CodeAtlas MCP server — 57 tools + 8 resources that expose live codebase architecture (routes, sequences, diffs, impact analysis, architecture violations, read-only SQL access) and AI-driven code review (per-entry-point review, evidence-gated findings, custom review guidelines, NL search) to any Model-Context-Protocol-compatible LLM client (Claude Code, Cursor, VS Code Copilot, Codex CLI, Gemini CLI, Antigravity, Continue). Self-initializes on first run — no VS Code required. Works on JS/TS, Python, Java, Kotlin, Go, Rust, Ruby, PHP, Swift, Dart, C#, C/C++. Node.js ≥18 only required on the host; the indexed workspace can be in any supported language.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "copilot",
+    "llm",
+    "ai",
+    "code-intelligence",
+    "code-analysis",
+    "ast",
+    "architecture",
+    "diagrams",
+    "sequence-diagram",
+    "impact-analysis",
+    "dependency-graph",
+    "codebase",
+    "code-navigator",
+    "visualization",
+    "system-architecture",
+    "web-development",
+    "full-stack",
+    "backend",
+    "frontend",
+    "database",
+    "sql",
+    "api",
+    "messaging",
+    "real-time",
+    "cloud",
+    "microservices",
+    "monolith",
+    "serverless",
+    "cicd",
+    "monitoring",
+    "observability",
+    "security"
+  ],
+  "homepage": "https://codeatlas.live",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vamsikk7/codeatlas-live.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vamsikk7/codeatlas-live-issues/issues"
+  },
+  "author": "CodeAtlas",
+  "license": "Apache-2.0",
+  "bin": {
+    "codeatlas-mcp": "./dist/mcp-server.js"
+  },
+  "files": [
+    "dist/mcp-server.js",
+    "dist/postinstall-hint.js",
+    "dist/sql-wasm.wasm",
+    "dist/tree-sitter.wasm",
+    "dist/grammars/**",
+    "dist/webview-ui/**",
+    "scripts/preinstall.js",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "THIRD-PARTY-NOTICES.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node ../scripts/build-mcp-package.js",
+    "prepare": "npm run build",
+    "preinstall": "node ./scripts/preinstall.js",
+    "postinstall": "node ./dist/postinstall-hint.js"
+  }
+}

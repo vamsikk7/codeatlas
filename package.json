@@ -1,0 +1,688 @@
+{
+    "name": "codeatlas-live",
+    "displayName": "CodeAtlas-Live",
+    "icon": "icon.png",
+    "description": "Continuously builds and updates five linked diagram layers (Microservices, Features, API Sequences, File Dependencies, and Function Flowcharts) for multi-language codebases — with differential rendering, commenting, and source navigation.",
+    "version": "9.3.0",
+    "buildNumber": 158,
+    "publisher": "codeatlaslive",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vamsikk7/codeatlas-live"
+    },
+    "homepage": "https://codeatlas.live",
+    "bugs": {
+        "url": "https://github.com/vamsikk7/codeatlas-live-issues/issues"
+    },
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Visualization",
+        "Programming Languages",
+        "Education",
+        "Linters",
+        "Other"
+    ],
+    "keywords": [
+        "diagram",
+        "architecture",
+        "visualization",
+        "flowchart",
+        "sequence diagram",
+        "code mapping",
+        "dependency graph",
+        "microservice",
+        "call graph",
+        "code navigation",
+        "code understanding",
+        "api explorer",
+        "uml",
+        "class diagram",
+        "flow diagram",
+        "codebase",
+        "javascript",
+        "typescript",
+        "java",
+        "python",
+        "spring boot",
+        "django",
+        "diff",
+        "git diff",
+        "code review",
+        "refactoring",
+        "code analysis",
+        "static analysis",
+        "developer tools",
+        "productivity",
+        "mobile",
+        "android",
+        "ios",
+        "react-native",
+        "kotlin",
+        "swift",
+        "compose",
+        "swiftui",
+        "navigation",
+        "screens",
+        "next.js",
+        "graphql"
+    ],
+    "activationEvents": [
+        "onStartupFinished",
+        "onUri"
+    ],
+    "capabilities": {
+        "untrustedWorkspaces": {
+            "supported": false,
+            "description": "CodeAtlas parses and indexes workspace source files to build its diagrams, which requires Workspace Trust. In Restricted Mode the extension stays paused — trust this workspace to start indexing."
+        }
+    },
+    "main": "./dist/extension.js",
+    "contributes": {
+        "keybindings": [
+            {
+                "command": "codeatlas.openMicroserviceDiagram",
+                "key": "ctrl+shift+d",
+                "mac": "cmd+shift+d"
+            },
+            {
+                "command": "codeatlas.searchApiExplorer",
+                "key": "ctrl+shift+a",
+                "mac": "cmd+shift+a"
+            },
+            {
+                "command": "codeatlas.initializeWorkspaceVisuals",
+                "key": "ctrl+shift+i",
+                "mac": "cmd+shift+i"
+            },
+            {
+                "command": "codeatlas.search",
+                "key": "ctrl+shift+f5",
+                "mac": "cmd+shift+f5"
+            },
+            {
+                "command": "codeatlas.replayPrev",
+                "key": "left",
+                "mac": "left",
+                "when": "codeatlas:replayActive"
+            },
+            {
+                "command": "codeatlas.replayNext",
+                "key": "right",
+                "mac": "right",
+                "when": "codeatlas:replayActive"
+            },
+            {
+                "command": "codeatlas.replayToggle",
+                "key": "space",
+                "mac": "space",
+                "when": "codeatlas:replayActive"
+            },
+            {
+                "command": "codeatlas.replayStop",
+                "key": "escape",
+                "mac": "escape",
+                "when": "codeatlas:replayActive"
+            }
+        ],
+        "commands": [
+            {
+                "command": "codeatlas.initializeWorkspaceVisuals",
+                "title": "CodeAtlas: Initialize Visuals",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.resyncEverything",
+                "title": "CodeAtlas: Re-sync Everything",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openApiExplorer",
+                "title": "CodeAtlas: Open API Explorer",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openSequenceForApi",
+                "title": "CodeAtlas: Open Sequence Diagram",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openFileDiagram",
+                "title": "CodeAtlas: Open File Diagram",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openFunctionFlow",
+                "title": "CodeAtlas: Open Function Flow",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.addComment",
+                "title": "CodeAtlas: Add Comment",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.showCommentsForSelection",
+                "title": "CodeAtlas: Show Comments",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.resolveComment",
+                "title": "CodeAtlas: Resolve Comment",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.rebuildCurrentFile",
+                "title": "CodeAtlas: Rebuild Current File",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.exportDiagramsJson",
+                "title": "CodeAtlas: Export Diagrams JSON",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.exportArchitectureDocs",
+                "title": "CodeAtlas: Export Architecture Docs (Markdown + Mermaid)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.toggleAutoUpdate",
+                "title": "CodeAtlas: Toggle Auto Update",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openFeatureDiagram",
+                "title": "CodeAtlas: Open Feature Diagram",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openMicroserviceDiagram",
+                "title": "CodeAtlas: Open Microservice Map",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openMapDiagram",
+                "title": "CodeAtlas: Open Knowledge Map",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.lightMode",
+                "title": "CodeAtlas: Enable Light Mode",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.darkMode",
+                "title": "CodeAtlas: Enable Dark Mode",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openWelcome",
+                "title": "CodeAtlas: Welcome",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.searchApiExplorer",
+                "title": "Search APIs",
+                "icon": "$(search)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.searchFunctionExplorer",
+                "title": "Search Functions",
+                "icon": "$(search)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.searchFileExplorer",
+                "title": "Search Files",
+                "icon": "$(search)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.searchFeatureExplorer",
+                "title": "Search Features",
+                "icon": "$(search)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openGitDiff",
+                "title": "Compare Commits",
+                "icon": "$(git-compare)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.clearGitDiff",
+                "title": "Clear Git Diff",
+                "icon": "$(discard)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openPrDiff",
+                "title": "Compare Pull Request",
+                "icon": "$(git-pull-request)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.setOpenRouterApiKey",
+                "title": "CodeAtlas: Set OpenRouter API Key",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.showHealthReport",
+                "title": "CodeAtlas: Show Health Report",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.copyApiRoute",
+                "title": "Copy API Route",
+                "icon": "$(clippy)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.search",
+                "title": "CodeAtlas: Search",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.loadCoverage",
+                "title": "CodeAtlas: Load Test Coverage",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.analyzeImpact",
+                "title": "CodeAtlas: Analyze Impact",
+                "icon": "$(target)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.openInBrowser",
+                "title": "CodeAtlas: Open in Browser",
+                "icon": "$(globe)",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.replayPrev",
+                "title": "CodeAtlas: Replay Previous Step",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.replayNext",
+                "title": "CodeAtlas: Replay Next Step",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.replayToggle",
+                "title": "CodeAtlas: Replay Play/Pause",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.replayStop",
+                "title": "CodeAtlas: Replay Stop",
+                "category": "CodeAtlas"
+            },
+            {
+                "command": "codeatlas.replayFromFile",
+                "title": "Replay Changes",
+                "icon": "$(play)",
+                "category": "CodeAtlas"
+            }
+        ],
+        "menus": {
+            "view/title": [
+                {
+                    "command": "codeatlas.searchApiExplorer",
+                    "when": "view == codeatlas.apiExplorer",
+                    "group": "navigation"
+                },
+                {
+                    "command": "codeatlas.searchFunctionExplorer",
+                    "when": "view == codeatlas.functionExplorer",
+                    "group": "navigation"
+                },
+                {
+                    "command": "codeatlas.searchFileExplorer",
+                    "when": "view == codeatlas.fileExplorer",
+                    "group": "navigation"
+                },
+                {
+                    "command": "codeatlas.searchFeatureExplorer",
+                    "when": "view == codeatlas.featureExplorer",
+                    "group": "navigation"
+                },
+                {
+                    "command": "codeatlas.openInBrowser",
+                    "when": "view == codeatlas.microserviceExplorer",
+                    "group": "navigation@0"
+                },
+                {
+                    "command": "codeatlas.showHealthReport",
+                    "when": "view == codeatlas.functionExplorer",
+                    "group": "navigation@1"
+                },
+                {
+                    "command": "codeatlas.analyzeImpact",
+                    "when": "view == codeatlas.functionExplorer",
+                    "group": "navigation@2"
+                },
+                {
+                    "command": "codeatlas.openGitDiff",
+                    "when": "view =~ /^codeatlas\\.(microserviceExplorer|featureExplorer|apiExplorer|fileExplorer|functionExplorer|changedItems|comments)$/ && !codeatlas:gitDiffActive",
+                    "group": "navigation@99"
+                },
+                {
+                    "command": "codeatlas.openPrDiff",
+                    "when": "view =~ /^codeatlas\\.(microserviceExplorer|featureExplorer|apiExplorer|fileExplorer|functionExplorer|changedItems|comments)$/ && !codeatlas:gitDiffActive",
+                    "group": "navigation@98"
+                },
+                {
+                    "command": "codeatlas.clearGitDiff",
+                    "when": "view =~ /^codeatlas\\.(microserviceExplorer|featureExplorer|apiExplorer|fileExplorer|functionExplorer|changedItems|comments)$/ && codeatlas:gitDiffActive",
+                    "group": "navigation@99"
+                }
+            ],
+            "view/item/context": [
+                {
+                    "command": "codeatlas.replayFromFile",
+                    "when": "viewItem == changedGraph && codeatlas:gitDiffActive",
+                    "group": "inline"
+                },
+                {
+                    "command": "codeatlas.copyApiRoute",
+                    "when": "viewItem == apiRoute",
+                    "group": "inline"
+                },
+                {
+                    "command": "codeatlas.analyzeImpact",
+                    "when": "viewItem == functionItem",
+                    "group": "inline"
+                },
+                {
+                    "command": "codeatlas.analyzeImpact",
+                    "when": "viewItem == fileItem",
+                    "group": "1_impact"
+                }
+            ]
+        },
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "codeatlas",
+                    "title": "CodeAtlas",
+                    "icon": "$(symbol-structure)"
+                }
+            ]
+        },
+        "views": {
+            "codeatlas": [
+                {
+                    "id": "codeatlas.welcome",
+                    "name": "Getting Started"
+                },
+                {
+                    "id": "codeatlas.microserviceExplorer",
+                    "name": "Microservices"
+                },
+                {
+                    "id": "codeatlas.featureExplorer",
+                    "name": "Feature Areas"
+                },
+                {
+                    "id": "codeatlas.apiExplorer",
+                    "name": "API Explorer"
+                },
+                {
+                    "id": "codeatlas.fileExplorer",
+                    "name": "File Explorer"
+                },
+                {
+                    "id": "codeatlas.functionExplorer",
+                    "name": "Function Explorer"
+                },
+                {
+                    "id": "codeatlas.changedItems",
+                    "name": "Changed Elements"
+                },
+                {
+                    "id": "codeatlas.comments",
+                    "name": "Comments"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "CodeAtlas",
+            "properties": {
+                "codeatlas.autoUpdateOnSave": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Automatically update diagrams when files are saved."
+                },
+                "codeatlas.remindOpenSourceInterest": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show an occasional (at most once per day) reminder to register interest in open-sourcing the CodeAtlas visual engine. Turn off to never show it."
+                },
+                "codeatlas.crossRepoPush": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Multi-repo workspaces: push live notifications to open browser tabs when one repo's API change affects another repo's consumed endpoints."
+                },
+                "codeatlas.replayCodaMaxConsumers": {
+                    "type": "number",
+                    "default": 5,
+                    "description": "Multi-repo replay: maximum consumer repos walked by the cross-repo coda at the end of a producer's replay. Consumers beyond the cap are listed in a summary frame."
+                },
+                "codeatlas.maxFiles": {
+                    "type": "number",
+                    "default": 2000,
+                    "description": "Maximum number of JS files to scan."
+                },
+                "codeatlas.maxFileSize": {
+                    "type": "number",
+                    "default": 5242880,
+                    "description": "Skip files larger than this many bytes (defaults to 5 MB). Raise for large generated files (Prisma schemas, GraphQL codegen output, large Vue SFCs); lower if you hit parser timeouts on a slow machine."
+                },
+                "codeatlas.sequenceTraversalDepth": {
+                    "type": "number",
+                    "default": 8,
+                    "description": "Maximum BFS depth when expanding sequence diagrams across imports. Increase for codebases with deep delegation chains; decrease to keep sequence graphs compact on huge codebases."
+                },
+                "codeatlas.storage.inMemoryOnly": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, CodeAtlas keeps state only in memory and never writes the .codeatlas/state.db file. State is rebuilt from source on every activation. Useful for ephemeral workspaces, secret-sensitive projects, or as a recovery option when the on-disk DB is corrupt."
+                },
+                "codeatlas.cascadeParallelism": {
+                    "type": "string",
+                    "enum": [
+                        "off",
+                        "tier1",
+                        "tier2"
+                    ],
+                    "default": "tier2",
+                    "description": "ADR-034 Phase D — multi-repo init parallelism. 'off' runs per-repo init serially (Phase B behaviour). 'tier1' caps in-process concurrency at min(8, cpu count) for a ~1.3-1.5x speedup. 'tier2' (default) parses each repo in its own worker_threads worker for real CPU parallelism — typically ~3-7x faster on multi-repo workspaces. If the worker pool fails to construct (e.g. WASM resolution error), CodeAtlas transparently falls back to tier1. No effect on single-repo workspaces."
+                },
+                "codeatlas.cascadeParallelismMigrated": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Internal one-shot marker — set automatically after the 7.1.0 upgrade flips a pre-7.1.0 'tier1' setting to 'tier2'. Don't edit manually; flipping cascadeParallelism back to 'tier1' is fully supported and persists across restarts."
+                },
+                "codeatlas.browserPort": {
+                    "type": "number",
+                    "default": 7742,
+                    "description": "Port for the standalone browser UI server (localhost)."
+                },
+                "codeatlas.ignore": {
+                    "type": "array",
+                    "default": [],
+                    "description": "Additional glob patterns to ignore during workspace scan. These are added to a baseline that already excludes node_modules, dist/build/out, .git, .next/.nuxt/.svelte-kit/.expo, __pycache__/.venv, target/.gradle, vendor, Pods/.swiftpm, .dart_tool, bin/obj, coverage, IDE state, and other framework dependency / build / cache directories. Add your repo-specific exclusions here."
+                },
+                "codeatlas.showUnchangedInDiagrams": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show unchanged elements in differential diagrams."
+                },
+                "codeatlas.sequence.apiDetectionMode": {
+                    "type": "string",
+                    "default": "heuristic",
+                    "enum": [
+                        "heuristic"
+                    ],
+                    "description": "API detection mode for sequence diagrams."
+                },
+                "codeatlas.diff.resetOnBranchChange": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Reset diff baseline when git branch changes."
+                },
+                "codeatlas.lspFallback": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable LSP fallback for receiver type resolution when tree-sitter fails (generics, re-exports, interface→impl). May increase CPU usage."
+                },
+                "codeatlas.lspTimeout": {
+                    "type": "number",
+                    "default": 2000,
+                    "description": "Timeout in milliseconds for each LSP definition lookup."
+                },
+                "codeatlas.llmNaming": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable LLM-powered semantic naming for clusters and services. Requires a configured LLM provider."
+                },
+                "codeatlas.domainLlmRefinementEnabled": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Issue #733 — when enabled, the optional LLM refiner re-names and re-calibrates the heuristic Domain clusters (Issue #701) on top of the deterministic output. The heuristic system stays the source of truth; the LLM never replaces it, only enhances. Requires a configured LLM provider. Toggle from the Domains card on the Home page."
+                },
+                "codeatlas.llmProvider": {
+                    "type": "string",
+                    "default": "openrouter",
+                    "enum": [
+                        "openrouter",
+                        "openai",
+                        "anthropic",
+                        "ollama",
+                        "custom"
+                    ],
+                    "enumDescriptions": [
+                        "OpenRouter — access 200+ models, free tier available, BYOK supported",
+                        "OpenAI — use your own OpenAI API key directly (gpt-4o, gpt-4o-mini, etc.)",
+                        "Anthropic — use your own Anthropic API key directly (claude-sonnet, claude-haiku, etc.)",
+                        "Ollama — local LLM via Ollama (no API key required, default: http://localhost:11434)",
+                        "Custom — any OpenAI-compatible endpoint (set URL in codeatlas.llmEndpoint)"
+                    ],
+                    "description": "LLM provider for semantic naming and AI queries. Set your API key via 'CodeAtlas: Set LLM API Key' command (not required for Ollama)."
+                },
+                "codeatlas.llmModel": {
+                    "type": "string",
+                    "default": "openrouter/free",
+                    "description": "Model ID. OpenRouter: 'openrouter/free' or 'openrouter/auto'. OpenAI: 'gpt-4o-mini'. Anthropic: 'claude-sonnet-4-20250514'. Ollama: 'llama3', 'codellama', 'mistral'."
+                },
+                "codeatlas.llmEndpoint": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Custom endpoint URL for LLM API. Used when provider is 'ollama' or 'custom'. Leave empty for provider defaults. Example: http://localhost:11434/v1/chat/completions"
+                },
+                "codeatlas.evidenceGateEnabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "AI Review evidence gate (#513): when enabled, findings must quote source verbatim or they are dropped. Toggle off only for debugging — when off, the model's unfiltered output is kept."
+                },
+                "codeatlas.aiReview.maxBudgetUSD": {
+                    "type": "number",
+                    "default": 1,
+                    "description": "Aggregate USD budget for a single AI Review run (#608). When the running cost reaches this cap, the review aborts and any findings already kept are persisted. Set to 0 to disable the budget guard (no cap)."
+                },
+                "codeatlas.aiReview.smallModelFallback": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Optional fallback model id used by small-coder reviews (#605) when the primary model returns zero findings after the re-quote retry. Example: 'openai/gpt-4o-mini'. Leave blank to disable fallback."
+                },
+                "codeatlas.health.godFileThreshold": {
+                    "type": "number",
+                    "default": 15,
+                    "description": "Minimum symbol count to flag a file as a 'god file'."
+                },
+                "codeatlas.health.highCouplingThreshold": {
+                    "type": "number",
+                    "default": 10,
+                    "description": "Edge count (per direction) to flag a file as high-coupling."
+                },
+                "codeatlas.health.deadCodeEnabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable dead code detection in health analysis."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "download-grammars": "node scripts/copy-grammars.js",
+        "postinstall": "npm run download-grammars",
+        "compile": "node esbuild.js",
+        "compile:prod": "node esbuild.js --package",
+        "watch": "node esbuild.js --watch",
+        "build:webview": "cd webview-ui && npm run build",
+        "bump-build": "node scripts/bump-build.js",
+        "package": "npm run compile:prod && npm run build:webview",
+        "package:dev": "npm run bump-build && npm run compile:prod && npm run build:webview",
+        "package:npm": "npm run compile:prod && npm run build:webview && node scripts/build-mcp-package.js && cd mcp-package && npm pack --ignore-scripts",
+        "vscode:prepublish": "npm run package",
+        "audit:release": "node scripts/audit-release-packages.js",
+        "publish:ovsx": "npx ovsx publish -p $OPENVSX_TOKEN",
+        "test": "vitest run && cd webview-ui && npm test",
+        "test:watch": "vitest",
+        "test:standalone": "vitest run src/standalone/__tests__/",
+        "lint": "tsc --noEmit",
+        "lint:catches": "npx tsx scripts/lint-silent-catches.ts",
+        "lint:issue-comments": "node scripts/lint-issue-comments.js",
+        "pretest:e2e": "find e2e/test-results -mindepth 1 -mtime +7 -exec rm -rf {} + 2>/dev/null || true",
+        "test:e2e": "npx playwright test --config e2e/playwright.config.ts",
+        "test:e2e:headed": "npx playwright test --config e2e/playwright.config.ts --headed",
+        "fetch:real-projects": "bash e2e/real-projects/fetch.sh",
+        "verify:mcp-smoke": "node e2e/scripts/mcp-smoke.js",
+        "verify:mcp-tools": "node e2e/scripts/mcp-all-tools-probe.js",
+        "verify:standalone": "node e2e/scripts/mcp-standalone-live-verify.js",
+        "verify:ai-review:mcp": "node e2e/scripts/mcp-ai-review-verify.mcp.js",
+        "verify:ai-review:ext": "node e2e/scripts/mcp-ai-review-verify.ext.js",
+        "verify:all37": "bash e2e/scripts/all37-leak-probe.sh",
+        "verify:real": "vitest run --config e2e/real-projects/vitest.config.ts e2e/real-projects/verify.test.ts",
+        "verify:real:update": "UPDATE_EXPECTATIONS=1 vitest run --config e2e/real-projects/vitest.config.ts e2e/real-projects/verify.test.ts",
+        "verify:real:invariants": "vitest run --config e2e/real-projects/vitest.config.ts e2e/real-projects/invariants.test.ts e2e/real-projects/integrity.test.ts e2e/real-projects/layers.test.ts e2e/real-projects/manifestDrift.test.ts e2e/real-projects/extras.test.ts e2e/real-projects/summary.test.ts e2e/real-projects/cascadeScenarios.test.ts e2e/real-projects/cascadeEditOpScenarios.test.ts e2e/real-projects/persistenceScenarios.test.ts e2e/real-projects/resyncScenarios.test.ts e2e/real-projects/timelineReplayScenarios.test.ts e2e/real-projects/replayStepOrderScenarios.test.ts e2e/real-projects/commentReanchorScenarios.test.ts e2e/real-projects/commitDiffScenarios.test.ts e2e/real-projects/regressionScopeRevert.test.ts e2e/real-projects/crossFileFlowScenarios.test.ts e2e/real-projects/incrementalReanchorScenarios.test.ts",
+        "verify:real:invariants:fast": "VERIFY_FAST=1 vitest run --config e2e/real-projects/vitest.config.ts e2e/real-projects/invariants.test.ts e2e/real-projects/integrity.test.ts e2e/real-projects/layers.test.ts e2e/real-projects/manifestDrift.test.ts e2e/real-projects/extras.test.ts e2e/real-projects/summary.test.ts e2e/real-projects/cascadeScenarios.test.ts e2e/real-projects/cascadeEditOpScenarios.test.ts e2e/real-projects/persistenceScenarios.test.ts e2e/real-projects/resyncScenarios.test.ts e2e/real-projects/timelineReplayScenarios.test.ts e2e/real-projects/replayStepOrderScenarios.test.ts e2e/real-projects/commentReanchorScenarios.test.ts e2e/real-projects/commitDiffScenarios.test.ts e2e/real-projects/regressionScopeRevert.test.ts e2e/real-projects/crossFileFlowScenarios.test.ts e2e/real-projects/incrementalReanchorScenarios.test.ts",
+        "verify:real:scenarios": "vitest run --config e2e/real-projects/vitest.config.ts e2e/real-projects/cascadeScenarios.test.ts e2e/real-projects/cascadeEditOpScenarios.test.ts e2e/real-projects/persistenceScenarios.test.ts e2e/real-projects/resyncScenarios.test.ts e2e/real-projects/timelineReplayScenarios.test.ts e2e/real-projects/replayStepOrderScenarios.test.ts e2e/real-projects/commentReanchorScenarios.test.ts e2e/real-projects/commitDiffScenarios.test.ts",
+        "review:deferred": "npx tsx scripts/quarterly-deferred-review.ts",
+        "bench:llm": "CODEATLAS_BENCH_VERBOSE=1 vitest run --config e2e/llm-quality/vitest.config.ts",
+        "bench:llm:capture": "npx tsx e2e/llm-quality/captureRawFindings.ts"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.59.1",
+        "@types/babel__traverse": "^7.28.0",
+        "@types/js-yaml": "^4.0.9",
+        "@types/node": "^20.11.0",
+        "@types/sql.js": "^1.4.9",
+        "@types/vscode": "^1.85.0",
+        "esbuild": "^0.20.0",
+        "typescript": "^5.3.0",
+        "vitest": "^1.2.0"
+    },
+    "dependencies": {
+        "@babel/parser": "^7.23.0",
+        "@babel/traverse": "^7.23.0",
+        "@babel/types": "^7.23.0",
+        "@modelcontextprotocol/sdk": "^1.27.1",
+        "@sentry/node": "^10.56.0",
+        "@types/ws": "^8.18.1",
+        "chokidar": "^5.0.0",
+        "js-yaml": "^4.1.0",
+        "minimatch": "^10.2.2",
+        "sql.js": "^1.10.3",
+        "tree-sitter-wasms": "^0.1.13",
+        "web-tree-sitter": "^0.22.6",
+        "ws": "^8.20.0",
+        "zod": "^4.4.3"
+    }
+}

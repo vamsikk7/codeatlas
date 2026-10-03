@@ -1,0 +1,816 @@
+{
+  "generatedFrom": "e2e/browser-verification-suite.json",
+  "suiteVersion": "2.0.0",
+  "repoCount": 46,
+  "parallelRunHint": "Hand each repos/<repo>.suite.json to a separate worker. Each is self-contained (repo meta + applicable cases + preRunReset + evidenceProtocol + perfBudgets). Evidence -> tmp/verification-runs/<build>/<repo>/...",
+  "repos": [
+    {
+      "repo": "csharp-aspnet",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/csharp-aspnet.suite.json"
+    },
+    {
+      "repo": "dart-flutter",
+      "category": "mobile",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "screen"
+      ],
+      "hasBaseline": true,
+      "suites": 19,
+      "cases": 35,
+      "excluded": 84,
+      "file": "repos/dart-flutter.suite.json"
+    },
+    {
+      "repo": "go-chi",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/go-chi.suite.json"
+    },
+    {
+      "repo": "go-echo",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/go-echo.suite.json"
+    },
+    {
+      "repo": "go-fiber",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/go-fiber.suite.json"
+    },
+    {
+      "repo": "go-gin",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/go-gin.suite.json"
+    },
+    {
+      "repo": "java-jaxrs",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/java-jaxrs.suite.json"
+    },
+    {
+      "repo": "java-micronaut",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "job",
+        "mq_consumer"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/java-micronaut.suite.json"
+    },
+    {
+      "repo": "java-spring",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/java-spring.suite.json"
+    },
+    {
+      "repo": "java-spring-kafka",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "mq_consumer"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 92,
+      "excluded": 27,
+      "file": "repos/java-spring-kafka.suite.json"
+    },
+    {
+      "repo": "js-express",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/js-express.suite.json"
+    },
+    {
+      "repo": "js-fastify",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/js-fastify.suite.json"
+    },
+    {
+      "repo": "js-koa",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/js-koa.suite.json"
+    },
+    {
+      "repo": "js-nextjs",
+      "category": "frontend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "screen",
+        "server_action"
+      ],
+      "hasBaseline": true,
+      "suites": 19,
+      "cases": 35,
+      "excluded": 84,
+      "file": "repos/js-nextjs.suite.json"
+    },
+    {
+      "repo": "js-serverless-examples",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 22,
+      "cases": 47,
+      "excluded": 72,
+      "file": "repos/js-serverless-examples.suite.json"
+    },
+    {
+      "repo": "kotlin-android",
+      "category": "mobile",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "screen",
+        "mobile_lifecycle"
+      ],
+      "hasBaseline": true,
+      "suites": 19,
+      "cases": 36,
+      "excluded": 83,
+      "file": "repos/kotlin-android.suite.json"
+    },
+    {
+      "repo": "kotlin-ktor",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/kotlin-ktor.suite.json"
+    },
+    {
+      "repo": "php-laravel",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "cli"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 91,
+      "excluded": 28,
+      "file": "repos/php-laravel.suite.json"
+    },
+    {
+      "repo": "php-symfony",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "cli"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 91,
+      "excluded": 28,
+      "file": "repos/php-symfony.suite.json"
+    },
+    {
+      "repo": "py-django",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "migration"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 91,
+      "excluded": 28,
+      "file": "repos/py-django.suite.json"
+    },
+    {
+      "repo": "py-django-celery",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "job"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 92,
+      "excluded": 27,
+      "file": "repos/py-django-celery.suite.json"
+    },
+    {
+      "repo": "py-drf",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/py-drf.suite.json"
+    },
+    {
+      "repo": "py-fastapi",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/py-fastapi.suite.json"
+    },
+    {
+      "repo": "py-flask",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/py-flask.suite.json"
+    },
+    {
+      "repo": "py-starlette",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/py-starlette.suite.json"
+    },
+    {
+      "repo": "ruby-rails",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "filter",
+        "migration"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 92,
+      "excluded": 27,
+      "file": "repos/ruby-rails.suite.json"
+    },
+    {
+      "repo": "ruby-rails-sidekiq",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "job"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 92,
+      "excluded": 27,
+      "file": "repos/ruby-rails-sidekiq.suite.json"
+    },
+    {
+      "repo": "ruby-sinatra",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/ruby-sinatra.suite.json"
+    },
+    {
+      "repo": "rust-actix",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/rust-actix.suite.json"
+    },
+    {
+      "repo": "rust-axum",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/rust-axum.suite.json"
+    },
+    {
+      "repo": "rust-rocket",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/rust-rocket.suite.json"
+    },
+    {
+      "repo": "swift-ios",
+      "category": "mobile",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "screen",
+        "mobile_lifecycle"
+      ],
+      "hasBaseline": true,
+      "suites": 19,
+      "cases": 36,
+      "excluded": 83,
+      "file": "repos/swift-ios.suite.json"
+    },
+    {
+      "repo": "swift-vapor",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/swift-vapor.suite.json"
+    },
+    {
+      "repo": "ts-apollo",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "graphql"
+      ],
+      "hasBaseline": true,
+      "suites": 32,
+      "cases": 89,
+      "excluded": 30,
+      "file": "repos/ts-apollo.suite.json"
+    },
+    {
+      "repo": "ts-express-realworld",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/ts-express-realworld.suite.json"
+    },
+    {
+      "repo": "ts-hono",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/ts-hono.suite.json"
+    },
+    {
+      "repo": "ts-nestjs",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/ts-nestjs.suite.json"
+    },
+    {
+      "repo": "ts-nextjs-pages",
+      "category": "fullstack",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "screen",
+        "data_fetch"
+      ],
+      "hasBaseline": true,
+      "suites": 33,
+      "cases": 95,
+      "excluded": 24,
+      "file": "repos/ts-nextjs-pages.suite.json"
+    },
+    {
+      "repo": "ts-nuxt",
+      "category": "fullstack",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "screen"
+      ],
+      "hasBaseline": true,
+      "suites": 33,
+      "cases": 95,
+      "excluded": 24,
+      "file": "repos/ts-nuxt.suite.json"
+    },
+    {
+      "repo": "ts-react-native",
+      "category": "mobile",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "screen"
+      ],
+      "hasBaseline": true,
+      "suites": 19,
+      "cases": 35,
+      "excluded": 84,
+      "file": "repos/ts-react-native.suite.json"
+    },
+    {
+      "repo": "ts-remix",
+      "category": "fullstack",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "screen",
+        "server_action"
+      ],
+      "hasBaseline": true,
+      "suites": 33,
+      "cases": 95,
+      "excluded": 24,
+      "file": "repos/ts-remix.suite.json"
+    },
+    {
+      "repo": "ts-sveltekit",
+      "category": "fullstack",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "screen",
+        "server_action"
+      ],
+      "hasBaseline": true,
+      "suites": 33,
+      "cases": 95,
+      "excluded": 24,
+      "file": "repos/ts-sveltekit.suite.json"
+    },
+    {
+      "repo": "ts-trpc",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "trpc"
+      ],
+      "hasBaseline": true,
+      "suites": 31,
+      "cases": 88,
+      "excluded": 31,
+      "file": "repos/ts-trpc.suite.json"
+    },
+    {
+      "repo": "polar",
+      "category": "multirepo",
+      "kind": "multi",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http",
+        "screen",
+        "migration",
+        "cli",
+        "model_hook",
+        "webhook",
+        "shared"
+      ],
+      "hasBaseline": false,
+      "suites": 35,
+      "cases": 111,
+      "excluded": 8,
+      "file": "repos/polar.suite.json"
+    },
+    {
+      "repo": "node-express-realworld",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": false,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/node-express-realworld.suite.json"
+    },
+    {
+      "repo": "test-drift",
+      "category": "backend",
+      "kind": "single",
+      "builds": [
+        "vsix",
+        "mcp"
+      ],
+      "capabilities": [
+        "http"
+      ],
+      "hasBaseline": false,
+      "suites": 31,
+      "cases": 90,
+      "excluded": 29,
+      "file": "repos/test-drift.suite.json"
+    }
+  ]
+}

@@ -1,0 +1,4809 @@
+{
+  "TYPE-SERVER-DELETE": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "L2a-server"
+    },
+    {
+      "clickText": "^DELETE$",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "L3-DELETE"
+    },
+    {
+      "clickNode": "«module»",
+      "nth": 0,
+      "wait": 2800,
+      "shot": "L4-participant",
+      "expectHashPrefix": "#/file/"
+    }
+  ],
+  "TYPE-SERVER-GET": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "L2a-server"
+    },
+    {
+      "clickText": "^GET$",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "L3-GET"
+    },
+    {
+      "clickNode": "«module»",
+      "nth": 0,
+      "wait": 2800,
+      "shot": "L4-participant",
+      "expectHashPrefix": "#/file/"
+    }
+  ],
+  "TYPE-SERVER-MIDDLEWARE": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "L2a-server"
+    },
+    {
+      "clickText": "^MIDDLEWARE$",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "L3-MIDDLEWARE"
+    },
+    {
+      "clickNode": "«module»",
+      "nth": 0,
+      "wait": 2800,
+      "shot": "L4-participant",
+      "expectHashPrefix": "#/file/"
+    }
+  ],
+  "TYPE-SERVER-POST": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "L2a-server"
+    },
+    {
+      "clickText": "^POST$",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "L3-POST"
+    },
+    {
+      "clickNode": "«module»",
+      "nth": 0,
+      "wait": 2800,
+      "shot": "L4-participant",
+      "expectHashPrefix": "#/file/"
+    }
+  ],
+  "TYPE-SERVER-PATCH": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "L2a-server"
+    },
+    {
+      "clickText": "^PATCH$",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "L3-PATCH"
+    },
+    {
+      "clickNode": "«module»",
+      "nth": 0,
+      "wait": 2800,
+      "shot": "L4-participant",
+      "expectHashPrefix": "#/file/"
+    }
+  ],
+  "TYPE-SERVER-DB_MIGRATION": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "L2a-server"
+    },
+    {
+      "clickText": "^DB_MIGRATION$",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "L3-DB_MIGRATION"
+    },
+    {
+      "clickNode": "«module»",
+      "nth": 0,
+      "wait": 2800,
+      "shot": "L4-participant",
+      "expectHashPrefix": "#/file/"
+    }
+  ],
+  "TYPE-SERVER-CLI_COMMAND": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "L2a-server"
+    },
+    {
+      "clickText": "^CLI_COMMAND$",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "L3-CLI_COMMAND"
+    },
+    {
+      "clickNode": "«module»",
+      "nth": 0,
+      "wait": 2800,
+      "shot": "L4-participant",
+      "expectHashPrefix": "#/file/"
+    }
+  ],
+  "TYPE-SERVER-PUT": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "L2a-server"
+    },
+    {
+      "clickText": "^PUT$",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "L3-PUT"
+    },
+    {
+      "clickNode": "«module»",
+      "nth": 0,
+      "wait": 2800,
+      "shot": "L4-participant",
+      "expectHashPrefix": "#/file/"
+    }
+  ],
+  "TYPE-SERVER-MODEL_HOOK": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "L2a-server"
+    },
+    {
+      "clickText": "^MODEL_HOOK$",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "L3-MODEL_HOOK"
+    },
+    {
+      "clickNode": "«module»",
+      "nth": 0,
+      "wait": 2800,
+      "shot": "L4-participant",
+      "expectHashPrefix": "#/file/"
+    }
+  ],
+  "TYPE-SERVER-NAV_ROUTE": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "L2a-server"
+    },
+    {
+      "clickText": "^NAV_ROUTE$",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "L3-NAV_ROUTE"
+    },
+    {
+      "clickNode": "«module»",
+      "nth": 0,
+      "wait": 2800,
+      "shot": "L4-participant",
+      "expectHashPrefix": "#/file/"
+    }
+  ],
+  "DIFF-SERVER-backoffice-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/backoffice/organizations_v2/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-backoffice-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/backoffice/organizations_v2/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-backoffice-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/backoffice/organizations_v2/endpoints.py",
+      "find": "def remove_member\\(",
+      "replace": "def remove_member(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-customer-portal-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/customer_portal/endpoints/customer.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-customer-portal-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/customer_portal/endpoints/customer.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-customer-portal-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/customer_portal/endpoints/customer.py",
+      "find": "def delete_payment_method\\(",
+      "replace": "def delete_payment_method(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-organization-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/organization/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-organization-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/organization/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-organization-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/organization/endpoints.py",
+      "find": "def leave_organization\\(",
+      "replace": "def leave_organization(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-versions-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/migrations/versions/2026-06-17-1034_add_meter_interval_to_product_and_.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-versions-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/migrations/versions/2026-06-17-1034_add_meter_interval_to_product_and_.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-versions-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/migrations/versions/2026-06-17-1034_add_meter_interval_to_product_and_.py",
+      "find": "def upgrade\\(",
+      "replace": "def upgrade(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-integrations-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/integrations/slack/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-integrations-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/integrations/slack/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-integrations-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/integrations/slack/endpoints.py",
+      "find": "def delete_integration\\(",
+      "replace": "def delete_integration(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-auth-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/auth/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-auth-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/auth/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-auth-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/auth/endpoints.py",
+      "find": "def totp_delete\\(",
+      "replace": "def totp_delete(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-scripts-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/scripts/assign_organization_owner.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-scripts-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/scripts/assign_organization_owner.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-scripts-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/scripts/assign_organization_owner.py",
+      "find": "def assign_owner\\(",
+      "replace": "def assign_owner(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-oauth2-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/oauth2/endpoints/oauth2.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-oauth2-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/oauth2/endpoints/oauth2.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-oauth2-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/oauth2/endpoints/oauth2.py",
+      "find": "def delete\\(",
+      "replace": "def delete(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-customer-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/customer/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-customer-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/customer/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-customer-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/customer/endpoints.py",
+      "find": "def delete_external\\(",
+      "replace": "def delete_external(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-order-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/order/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-order-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/order/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-order-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/order/endpoints.py",
+      "find": "def export\\(",
+      "replace": "def export(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-benefit-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/benefit/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-benefit-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/benefit/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-benefit-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/benefit/endpoints.py",
+      "find": "def delete\\(",
+      "replace": "def delete(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-member-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/member/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-member-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/member/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-member-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/member/endpoints.py",
+      "find": "def delete_member_by_external_id\\(",
+      "replace": "def delete_member_by_external_id(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-metrics-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/metrics/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-metrics-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/metrics/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-metrics-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/metrics/endpoints.py",
+      "find": "def delete_dashboard\\(",
+      "replace": "def delete_dashboard(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-subscription-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/subscription/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-subscription-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/subscription/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-subscription-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/subscription/endpoints.py",
+      "find": "def revoke\\(",
+      "replace": "def revoke(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-user-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/user/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-user-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/user/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-user-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/user/endpoints.py",
+      "find": "def disconnect_oauth_account\\(",
+      "replace": "def disconnect_oauth_account(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-webhook-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/webhook/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-webhook-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/webhook/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-webhook-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/webhook/endpoints.py",
+      "find": "def delete_webhook_endpoint\\(",
+      "replace": "def delete_webhook_endpoint(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-event-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/event/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-event-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/event/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-event-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/event/endpoints.py",
+      "find": "def list_names\\(",
+      "replace": "def list_names(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-custom-field-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/custom_field/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-custom-field-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/custom_field/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-custom-field-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/custom_field/endpoints.py",
+      "find": "def delete\\(",
+      "replace": "def delete(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-license-key-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/license_key/endpoints.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-license-key-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/license_key/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-license-key-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/license_key/endpoints.py",
+      "find": "def get_activation\\(",
+      "replace": "def get_activation(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-middlewares-comment": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/middlewares.py",
+      "append": "\n# CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-middlewares-new-symbol": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/middlewares.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-SERVER-middlewares-handler-body": [
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "server/polar/middlewares.py",
+      "find": "def CacheControlMiddleware\\(",
+      "replace": "def CacheControlMiddleware(  # CA-E2E-DIFF-PROBE body-level\\n",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 18000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 14000
+    },
+    {
+      "goto": "#/features/server",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "REPLAY-SERVER": [
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1"
+    },
+    {
+      "clickCommand": "Replay",
+      "wait": 3000,
+      "shot": "replay-picker"
+    },
+    {
+      "pickerPick": "server",
+      "wait": 4000,
+      "shot": "replay-first-step"
+    },
+    {
+      "replay": "play",
+      "wait": 4000,
+      "shot": "replay-playing"
+    },
+    {
+      "replay": "step",
+      "wait": 3000,
+      "shot": "replay-next"
+    },
+    {
+      "replay": "stop",
+      "wait": 2000,
+      "shot": "replay-stopped"
+    }
+  ],
+  "REVIEW-SERVER-backoffice": [
+    {
+      "editFile": "server/polar/backoffice/organizations_v2/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 30000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 18000
+    }
+  ],
+  "REVIEW-SERVER-customer-portal": [
+    {
+      "editFile": "server/polar/customer_portal/endpoints/customer.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 30000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 18000
+    }
+  ],
+  "REVIEW-SERVER-organization": [
+    {
+      "editFile": "server/polar/organization/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 30000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 18000
+    }
+  ],
+  "REVIEW-SERVER-versions": [
+    {
+      "editFile": "server/migrations/versions/2026-06-17-1034_add_meter_interval_to_product_and_.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 30000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 18000
+    }
+  ],
+  "REVIEW-SERVER-integrations": [
+    {
+      "editFile": "server/polar/integrations/slack/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 30000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 18000
+    }
+  ],
+  "REVIEW-SERVER-auth": [
+    {
+      "editFile": "server/polar/auth/endpoints.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 30000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 18000
+    }
+  ],
+  "REVIEW-SERVER-scripts": [
+    {
+      "editFile": "server/scripts/assign_organization_owner.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 30000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 18000
+    }
+  ],
+  "REVIEW-SERVER-oauth2": [
+    {
+      "editFile": "server/polar/oauth2/endpoints/oauth2.py",
+      "append": "\n\ndef ca_e2e_diff_probe():  # CA-E2E-DIFF-PROBE structural add\n    return 42\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 30000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 18000
+    }
+  ],
+  "TYPE-CLIENTS-DELETE": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-EVENT_EMIT": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 1,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-GET": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 2,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-NAV_ROUTE": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 3,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-NETWORK": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 4,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-PATCH": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 5,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-POST": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 6,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-PUT": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 7,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-SCREEN": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-SERVER_ACTION": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 1,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-DI_BINDING": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 2,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-PUSH_HANDLER": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 3,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "TYPE-CLIENTS-WIDGET": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "L2a-clients"
+    },
+    {
+      "clickText": "\\/\\([a-z0-9_-]+\\)\\/[a-z0-9\\[]|page\\.tsx",
+      "nth": 4,
+      "wait": 2600,
+      "shot": "screen-content",
+      "expectHashPrefix": "#/screen"
+    },
+    {
+      "clickText": "use(Query|SWR|Mutation|Infinite)|fetch\\b|axios|\\.tsx\\b|→|->",
+      "nth": 0,
+      "wait": 2600,
+      "shot": "deeper-drill",
+      "expectHashPrefix": "#/flow/"
+    }
+  ],
+  "DIFF-CLIENTS-web-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/web/src/utils/sse.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-web-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/web/src/utils/sse.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-web-handler-body": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/web/src/utils/sse.ts",
+      "find": "(function|const)\\s+events\\b",
+      "replace": "$1 events /* CA-E2E-DIFF-PROBE body-level */",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-app-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/targets/widget/widgets.swift",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-app-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/targets/widget/widgets.swift",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-app-handler-body": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/targets/widget/widgets.swift",
+      "find": "(function|const)\\s+colorScheme\\b",
+      "replace": "$1 colorScheme /* CA-E2E-DIFF-PROBE body-level */",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-orbit-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/orbit/src/components/AppShell.tsx",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-orbit-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/orbit/src/components/AppShell.tsx",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-orbit-handler-body": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/orbit/src/components/AppShell.tsx",
+      "find": "(function|const)\\s+Link\\b",
+      "replace": "$1 Link /* CA-E2E-DIFF-PROBE body-level */",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-finance-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/finance.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-finance-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/finance.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-finance-handler-body": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/finance.ts",
+      "find": "(function|const)\\s+useMutation\\b",
+      "replace": "$1 useMutation /* CA-E2E-DIFF-PROBE body-level */",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-notifications-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/notifications.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-notifications-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/notifications.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-notifications-handler-body": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/notifications.ts",
+      "find": "(function|const)\\s+useMutation\\b",
+      "replace": "$1 useMutation /* CA-E2E-DIFF-PROBE body-level */",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-checkout-links-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/checkout_links.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-checkout-links-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/checkout_links.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-checkout-links-handler-body": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/checkout_links.ts",
+      "find": "(function|const)\\s+useMutation\\b",
+      "replace": "$1 useMutation /* CA-E2E-DIFF-PROBE body-level */",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-organizations-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/organizations.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-organizations-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/organizations.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-organizations-handler-body": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/organizations.ts",
+      "find": "(function|const)\\s+useMutation\\b",
+      "replace": "$1 useMutation /* CA-E2E-DIFF-PROBE body-level */",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-subscriptions-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/subscriptions.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-subscriptions-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/subscriptions.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-subscriptions-handler-body": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/subscriptions.ts",
+      "find": "(function|const)\\s+useMutation\\b",
+      "replace": "$1 useMutation /* CA-E2E-DIFF-PROBE body-level */",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-checkout-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/packages/checkout/src/providers/CheckoutProvider.tsx",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-checkout-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/packages/checkout/src/providers/CheckoutProvider.tsx",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-userOrganizations-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/userOrganizations.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-userOrganizations-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/userOrganizations.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-userOrganizations-handler-body": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/userOrganizations.ts",
+      "find": "(function|const)\\s+useMutation\\b",
+      "replace": "$1 useMutation /* CA-E2E-DIFF-PROBE body-level */",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-customers-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/customers.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-customers-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/customers.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-orders-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/orders.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-orders-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/orders.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-products-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/products.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-products-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/products.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-custom-fields-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/custom_fields.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-custom-fields-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/custom_fields.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-discounts-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/discounts.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-discounts-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/discounts.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-metrics-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/metrics.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-metrics-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/metrics.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-users-comment": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/users.ts",
+      "append": "\n// CA-E2E-DIFF-PROBE comment-level change\n",
+      "level": "comment"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-users-new-symbol": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/users.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "DIFF-CLIENTS-users-handler-body": [
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "before-clean"
+    },
+    {
+      "editFile": "clients/apps/app/hooks/polar/users.ts",
+      "find": "(function|const)\\s+useMutation\\b",
+      "replace": "$1 useMutation /* CA-E2E-DIFF-PROBE body-level */",
+      "level": "handler-body"
+    },
+    {
+      "waitResync": 12000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-after-edit"
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3500,
+      "shot": "perrepo-L2a-after-edit"
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    },
+    {
+      "goto": "#/features/clients",
+      "wait": 3000,
+      "shot": "after-revert-clean"
+    }
+  ],
+  "REPLAY-CLIENTS": [
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1"
+    },
+    {
+      "clickCommand": "Replay",
+      "wait": 3000,
+      "shot": "replay-picker"
+    },
+    {
+      "pickerPick": "clients",
+      "wait": 4000,
+      "shot": "replay-first-step"
+    },
+    {
+      "replay": "play",
+      "wait": 4000,
+      "shot": "replay-playing"
+    },
+    {
+      "replay": "step",
+      "wait": 3000,
+      "shot": "replay-next"
+    },
+    {
+      "replay": "stop",
+      "wait": 2000,
+      "shot": "replay-stopped"
+    }
+  ],
+  "REVIEW-CLIENTS-web": [
+    {
+      "editFile": "clients/apps/web/src/utils/sse.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 15000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    }
+  ],
+  "REVIEW-CLIENTS-app": [
+    {
+      "editFile": "clients/apps/app/targets/widget/widgets.swift",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 15000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    }
+  ],
+  "REVIEW-CLIENTS-orbit": [
+    {
+      "editFile": "clients/apps/orbit/src/components/AppShell.tsx",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 15000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    }
+  ],
+  "REVIEW-CLIENTS-finance": [
+    {
+      "editFile": "clients/apps/app/hooks/polar/finance.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 15000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    }
+  ],
+  "REVIEW-CLIENTS-notifications": [
+    {
+      "editFile": "clients/apps/app/hooks/polar/notifications.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 15000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    }
+  ],
+  "REVIEW-CLIENTS-checkout-links": [
+    {
+      "editFile": "clients/apps/app/hooks/polar/checkout_links.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 15000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    }
+  ],
+  "REVIEW-CLIENTS-organizations": [
+    {
+      "editFile": "clients/apps/app/hooks/polar/organizations.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 15000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    }
+  ],
+  "REVIEW-CLIENTS-subscriptions": [
+    {
+      "editFile": "clients/apps/app/hooks/polar/subscriptions.ts",
+      "append": "\n\nexport function caE2eDiffProbe() { return 42; } // CA-E2E-DIFF-PROBE structural add\n",
+      "level": "new-symbol"
+    },
+    {
+      "waitResync": 15000
+    },
+    {
+      "goto": "#/system-design",
+      "wait": 3000,
+      "shot": "L1-with-change"
+    },
+    {
+      "aiReview": true,
+      "wait": 12000,
+      "shot": "review-running"
+    },
+    {
+      "wait": 8000,
+      "shot": "review-findings",
+      "waitShot": true
+    },
+    {
+      "revertAll": true
+    },
+    {
+      "waitResync": 9000
+    }
+  ]
+}

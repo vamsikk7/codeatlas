@@ -1,0 +1,69 @@
+{
+    "$schema": "Issue #708 Learn panel content. Keys mirror ViewMode + a few synthetic keys for non-diagram pages.",
+    "map": {
+        "title": "Knowledge Map",
+        "summary": "Single-canvas overview composed from services, clusters, APIs, and infrastructure. The fastest way to answer 'what's in this codebase?' on first visit.",
+        "body": "Each node carries a meta.layer accent and a meta.drillDownGraphId. Click any node to drill into the existing layer view (service → L2a feature, cluster → L2b api-list, API → L3 sequence). The overlay panel toggles individual layers + the diff overlay on and off. Domain and Tour overlays are placeholders for #701 / #702 — disabled until those features land per repo.",
+        "powerExtra": "Backed by `mapGraphBuilder.buildMapGraph`. Rebuilt at workspace init, on every cascade event, and on-demand when the panel is opened. The standalone server rebuilds it inside handleRequestRoute when the cache is stale."
+    },
+    "domain": {
+        "title": "Business Domains",
+        "summary": "Verb-action clusters of the codebase — 'Authenticate users', 'Process payments' — that answer 'what does this codebase do?' rather than 'how is it organized?'.",
+        "body": "Heuristic domain assignment from route-path keywords + Louvain cluster names. Confidence reflects evidence strength: 0.6 for a route match, 0.4 for a cluster-label-only match, 0.2 for the catch-all 'Other' bucket. Inter-domain edges show file overlap so cross-cutting concerns surface immediately.",
+        "powerExtra": "The 🧠 chip on the Domains card toggles the optional LLM refinement layer on top. Heuristic stays the source of truth; the LLM only renames, recalibrates confidence (capped +0.3 over heuristic), and suggests merges. Refined names persist to the sqlite v9 `domains` table."
+    },
+    "feature": {
+        "title": "Feature Areas",
+        "summary": "Louvain communities over the workspace call graph — clusters of files that call each other often, which usually means they implement a single capability together.",
+        "body": "Hover any cluster to see its files. Click to drill into the L2b api list (every entry point that belongs to the cluster). The Modules ↔ Domains toggle at the top swaps in the heuristic business-domain clustering on the same canvas.",
+        "powerExtra": "`featureGraphBuilder.buildFeatureGraph` runs `detectCommunities` (which calls Louvain via `core/analysis/communityDetector.ts`) then diffs against the baseline so additions / removals / membership changes light up. Sub-clusters appear as pills when a cluster exceeds 15 files."
+    },
+    "microservice": {
+        "title": "L1 System Design",
+        "summary": "Top-level architecture: services (top-level source directories or detected microservices), inter-service calls, and infrastructure (databases / caches / queues / external APIs).",
+        "body": "Click a service to drill into its features (L2a). Infrastructure nodes have type discriminators (database / cache / queue / external / sdk) so a glance tells you what kind of dependency a service has on each.",
+        "powerExtra": "Built by `microserviceGraphBuilder` — runs `detectServices` + `detectInfrastructureServices` against the snapshot. Workers (jobs + MQ consumers) become sibling nodes via `meta.worker: true`. Service detection reads filesystem each pass; the graph is always re-derived on open instead of cached."
+    },
+    "api-list": {
+        "title": "API List (L2b)",
+        "summary": "Every entry point in the cluster: HTTP routes, screens, navigation links, background jobs, MQ consumers, CLI commands, push handlers, and more.",
+        "body": "Sections collapse by category. The search filter narrows by route, handler name, or method. The `/` key focuses the search box from anywhere on the panel.",
+        "powerExtra": "Each item is an `ApiRecord` with a synthetic `method` discriminator: `GET`/`POST`/… for HTTP; `JOB` / `MQ_CONSUMER` / `CLI_COMMAND` / `SCREEN` / `NAV_ROUTE` / `NETWORK` / `DI_BINDING` for non-HTTP. See `frameworkDetector.ts` + `mobile/*.ts` for the full taxonomy."
+    },
+    "sequence": {
+        "title": "L3 Sequence Diagram",
+        "summary": "Call sequence for one API handler — which participants (modules, classes, external services) interact and in what order.",
+        "body": "Participants are inferred from imports + receiver types. Messages are inline from the handler body. Loops and conditionals collapse to repeated arrows; the renderer doesn't pretend to be a full state machine.",
+        "powerExtra": "Driven by `sequenceGraphBuilder.buildSequenceGraph`. The BFS depth limit is `codeatlas.sequenceTraversalDepth` (default 8). When a call site can't be resolved (no matching import or LSP fallback), it lands on an `unknown` participant — intentional design choice (see #213)."
+    },
+    "file": {
+        "title": "L4 File Dependency",
+        "summary": "One file's imports, exports, and dependent files. The L4 layer is the bridge between code-level details and cluster-level overviews.",
+        "body": "Function and class nodes inside the file are also visible. Click a function to open its L5 flow chart.",
+        "powerExtra": "`fileGraphBuilder.buildFileGraph` runs per-file post-cascade. FE/mobile services get additional node kinds (`component`, `hook`, `store`, `fetcher`, `route-config`, `view`, `viewmodel`, `repository`, `network-client`, `persistence`) via the FileGraphEnricher."
+    },
+    "flow": {
+        "title": "L5 Function Flow Chart",
+        "summary": "Control flow inside one function: branches, loops, returns, throws. The deepest layer; use it to pick apart a tricky implementation.",
+        "body": "Decision nodes render as diamonds; loops as repeated arrows; returns / throws as terminal pills. Edges carry the branch labels (`if`, `else if`, `else`, `for`, …).",
+        "powerExtra": "Built by `flowGraphBuilder.buildFlowGraph` from the AST. Anonymous arrow handlers attached to routes (Express / Fastify / Hono) get their own flow graphs via the anonymous-route finder."
+    },
+    "health": {
+        "title": "Health Report",
+        "summary": "Code health diagnostics: dead code, god files (too many responsibilities), high coupling, dependency cycles, orphaned clusters.",
+        "body": "Each card is severity-colored. Click for the underlying entities. Dead code detection uses the call graph; god-file detection uses LOC + member count.",
+        "powerExtra": "`analyzeHealth` reads from the working snapshot only — no AST pass. Re-runs on every cascade. Per-finding severity thresholds live at the top of `healthAnalyzer.ts`."
+    },
+    "screen-content": {
+        "title": "L2b Screen Content",
+        "summary": "What a screen renders + the interactions wired to it. The FE / mobile analogue of the HTTP API list.",
+        "body": "Sections: visual elements (text / button / image / form), interactions (onSubmit / onClick), data hooks (useSWR / useQuery / fetch), navigation outbound (router.push / Link).",
+        "powerExtra": "Driven by `screenContentExtractor`. Populated for services classified as `frontend` or `mobile` via `repoCategories.ts`. Backend services produce zero records here."
+    },
+    "tour": {
+        "title": "Onboarding Tour",
+        "summary": "Guided walkthrough of the codebase, ordered by call-graph fan-in DESC. Designed for a 30-minute first read.",
+        "body": "Prev / Next steps through entry points one at a time. Each step shows what the route does + which other code calls into it. Switch to 'Recent changes' mode to walk through what's new instead.",
+        "powerExtra": "`tourBuilder.buildTour` produces the step list. The MCP `get_tour` tool exposes the same data to agents. Future iterations will generate per-step LLM blurbs to replace the heuristic template (#702 follow-up)."
+    }
+}

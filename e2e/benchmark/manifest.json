@@ -1,0 +1,446 @@
+{
+  "source": "withmartian/code-review-benchmark",
+  "note": "Repos + PRs to cover. base/head are resolved by the runner (reviewPRs.mjs) via the GitHub API and cached in its results file — no SHAs baked here so the manifest stays diff-friendly.",
+  "repoCount": 7,
+  "prCount": 50,
+  "goldenTotal": 136,
+  "repos": {
+    "calcom/cal.com": {
+      "prs": [
+        8087,
+        10600,
+        10967,
+        22345,
+        7232,
+        8330,
+        11059,
+        14943,
+        14740,
+        22532
+      ],
+      "goldenTotal": 31
+    },
+    "ai-code-review-evaluation/discourse-graphite": {
+      "prs": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "goldenTotal": 28
+    },
+    "grafana/grafana": {
+      "prs": [
+        79265,
+        103633,
+        76186,
+        107534,
+        106778,
+        90045,
+        80329,
+        90939,
+        94942,
+        97529
+      ],
+      "goldenTotal": 22
+    },
+    "ai-code-review-evaluation/keycloak-greptile": {
+      "prs": [
+        1
+      ],
+      "goldenTotal": 2
+    },
+    "keycloak/keycloak": {
+      "prs": [
+        32918,
+        33832,
+        36882,
+        36880,
+        37038,
+        37429,
+        37634,
+        38446,
+        40940
+      ],
+      "goldenTotal": 22
+    },
+    "ai-code-review-evaluation/sentry-greptile": {
+      "prs": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "goldenTotal": 12
+    },
+    "getsentry/sentry": {
+      "prs": [
+        67876,
+        93824,
+        77754,
+        80528,
+        95633,
+        80168
+      ],
+      "goldenTotal": 19
+    }
+  },
+  "cases": [
+    {
+      "repo": "calcom/cal.com",
+      "pr": 8087,
+      "url": "https://github.com/calcom/cal.com/pull/8087",
+      "title": "Async import of the appStore packages",
+      "golden": 2
+    },
+    {
+      "repo": "calcom/cal.com",
+      "pr": 10600,
+      "url": "https://github.com/calcom/cal.com/pull/10600",
+      "title": "feat: 2fa backup codes",
+      "golden": 4
+    },
+    {
+      "repo": "calcom/cal.com",
+      "pr": 10967,
+      "url": "https://github.com/calcom/cal.com/pull/10967",
+      "title": "fix: handle collective multiple host on destinationCalendar",
+      "golden": 5
+    },
+    {
+      "repo": "calcom/cal.com",
+      "pr": 22345,
+      "url": "https://github.com/calcom/cal.com/pull/22345",
+      "title": "feat: convert InsightsBookingService to use Prisma.sql raw queries",
+      "golden": 2
+    },
+    {
+      "repo": "calcom/cal.com",
+      "pr": 7232,
+      "url": "https://github.com/calcom/cal.com/pull/7232",
+      "title": "Comprehensive workflow reminder management for booking lifecycle events",
+      "golden": 2
+    },
+    {
+      "repo": "calcom/cal.com",
+      "pr": 8330,
+      "url": "https://github.com/calcom/cal.com/pull/8330",
+      "title": "Advanced date override handling and timezone compatibility improvements",
+      "golden": 2
+    },
+    {
+      "repo": "calcom/cal.com",
+      "pr": 11059,
+      "url": "https://github.com/calcom/cal.com/pull/11059",
+      "title": "OAuth credential sync and app integration enhancements",
+      "golden": 5
+    },
+    {
+      "repo": "calcom/cal.com",
+      "pr": 14943,
+      "url": "https://github.com/calcom/cal.com/pull/14943",
+      "title": "SMS workflow reminder retry count tracking",
+      "golden": 2
+    },
+    {
+      "repo": "calcom/cal.com",
+      "pr": 14740,
+      "url": "https://github.com/calcom/cal.com/pull/14740",
+      "title": "Add guest management functionality to existing bookings",
+      "golden": 5
+    },
+    {
+      "repo": "calcom/cal.com",
+      "pr": 22532,
+      "url": "https://github.com/calcom/cal.com/pull/22532",
+      "title": "feat: add calendar cache status and actions (#22532)",
+      "golden": 2
+    },
+    {
+      "repo": "ai-code-review-evaluation/discourse-graphite",
+      "pr": 1,
+      "url": "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/1",
+      "title": "FEATURE: automatically downsize large images",
+      "golden": 3
+    },
+    {
+      "repo": "ai-code-review-evaluation/discourse-graphite",
+      "pr": 2,
+      "url": "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/2",
+      "title": "FEATURE: per-topic unsubscribe option in emails",
+      "golden": 2
+    },
+    {
+      "repo": "ai-code-review-evaluation/discourse-graphite",
+      "pr": 3,
+      "url": "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/3",
+      "title": "Add comprehensive email validation for blocked users",
+      "golden": 2
+    },
+    {
+      "repo": "ai-code-review-evaluation/discourse-graphite",
+      "pr": 4,
+      "url": "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/4",
+      "title": "Enhance embed URL handling and validation system",
+      "golden": 6
+    },
+    {
+      "repo": "ai-code-review-evaluation/discourse-graphite",
+      "pr": 5,
+      "url": "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/5",
+      "title": "Optimize header layout performance with flexbox mixins",
+      "golden": 2
+    },
+    {
+      "repo": "ai-code-review-evaluation/discourse-graphite",
+      "pr": 6,
+      "url": "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/6",
+      "title": "UX: show complete URL path if website domain is same as instance domain",
+      "golden": 1
+    },
+    {
+      "repo": "ai-code-review-evaluation/discourse-graphite",
+      "pr": 7,
+      "url": "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/7",
+      "title": "scale-color $lightness must use $secondary for dark themes",
+      "golden": 3
+    },
+    {
+      "repo": "ai-code-review-evaluation/discourse-graphite",
+      "pr": 8,
+      "url": "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/8",
+      "title": "FIX: proper handling of group memberships",
+      "golden": 3
+    },
+    {
+      "repo": "ai-code-review-evaluation/discourse-graphite",
+      "pr": 9,
+      "url": "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/9",
+      "title": "FEATURE: Localization fallbacks (server-side)",
+      "golden": 2
+    },
+    {
+      "repo": "ai-code-review-evaluation/discourse-graphite",
+      "pr": 10,
+      "url": "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/10",
+      "title": "FEATURE: Can edit category/host relationships for embedding",
+      "golden": 4
+    },
+    {
+      "repo": "grafana/grafana",
+      "pr": 79265,
+      "url": "https://github.com/grafana/grafana/pull/79265",
+      "title": "Anonymous: Add configurable device limit",
+      "golden": 5
+    },
+    {
+      "repo": "grafana/grafana",
+      "pr": 103633,
+      "url": "https://github.com/grafana/grafana/pull/103633",
+      "title": "AuthZService: improve authz caching",
+      "golden": 2
+    },
+    {
+      "repo": "grafana/grafana",
+      "pr": 76186,
+      "url": "https://github.com/grafana/grafana/pull/76186",
+      "title": "Plugins: Chore: Renamed instrumentation middleware to metrics middleware",
+      "golden": 2
+    },
+    {
+      "repo": "grafana/grafana",
+      "pr": 107534,
+      "url": "https://github.com/grafana/grafana/pull/107534",
+      "title": "Advanced Query Processing Architecture",
+      "golden": 1
+    },
+    {
+      "repo": "grafana/grafana",
+      "pr": 106778,
+      "url": "https://github.com/grafana/grafana/pull/106778",
+      "title": "Notification Rule Processing Engine",
+      "golden": 2
+    },
+    {
+      "repo": "grafana/grafana",
+      "pr": 90045,
+      "url": "https://github.com/grafana/grafana/pull/90045",
+      "title": "Dual Storage Architecture",
+      "golden": 3
+    },
+    {
+      "repo": "grafana/grafana",
+      "pr": 80329,
+      "url": "https://github.com/grafana/grafana/pull/80329",
+      "title": "Database Performance Optimizations",
+      "golden": 1
+    },
+    {
+      "repo": "grafana/grafana",
+      "pr": 90939,
+      "url": "https://github.com/grafana/grafana/pull/90939",
+      "title": "Frontend Asset Optimization",
+      "golden": 2
+    },
+    {
+      "repo": "grafana/grafana",
+      "pr": 94942,
+      "url": "https://github.com/grafana/grafana/pull/94942",
+      "title": "Advanced SQL Analytics Framework",
+      "golden": 2
+    },
+    {
+      "repo": "grafana/grafana",
+      "pr": 97529,
+      "url": "https://github.com/grafana/grafana/pull/97529",
+      "title": "Unified Storage Performance Optimizations",
+      "golden": 2
+    },
+    {
+      "repo": "ai-code-review-evaluation/keycloak-greptile",
+      "pr": 1,
+      "url": "https://github.com/ai-code-review-evaluation/keycloak-greptile/pull/1",
+      "title": "Fixing Re-authentication with passkeys",
+      "golden": 2
+    },
+    {
+      "repo": "keycloak/keycloak",
+      "pr": 32918,
+      "url": "https://github.com/keycloak/keycloak/pull/32918",
+      "title": "Add caching support for IdentityProviderStorageProvider.getForLogin operations",
+      "golden": 2
+    },
+    {
+      "repo": "keycloak/keycloak",
+      "pr": 33832,
+      "url": "https://github.com/keycloak/keycloak/pull/33832",
+      "title": "Add AuthzClientCryptoProvider for authorization client cryptographic operations",
+      "golden": 2
+    },
+    {
+      "repo": "keycloak/keycloak",
+      "pr": 36882,
+      "url": "https://github.com/keycloak/keycloak/pull/36882",
+      "title": "Add rolling-updates feature flag and compatibility framework",
+      "golden": 1
+    },
+    {
+      "repo": "keycloak/keycloak",
+      "pr": 36880,
+      "url": "https://github.com/keycloak/keycloak/pull/36880",
+      "title": "Add Client resource type and scopes to authorization schema",
+      "golden": 3
+    },
+    {
+      "repo": "keycloak/keycloak",
+      "pr": 37038,
+      "url": "https://github.com/keycloak/keycloak/pull/37038",
+      "title": "Add Groups resource type and scopes to authorization schema",
+      "golden": 2
+    },
+    {
+      "repo": "keycloak/keycloak",
+      "pr": 37429,
+      "url": "https://github.com/keycloak/keycloak/pull/37429",
+      "title": "Add HTML sanitizer for translated message resources",
+      "golden": 4
+    },
+    {
+      "repo": "keycloak/keycloak",
+      "pr": 37634,
+      "url": "https://github.com/keycloak/keycloak/pull/37634",
+      "title": "Implement access token context encoding framework",
+      "golden": 4
+    },
+    {
+      "repo": "keycloak/keycloak",
+      "pr": 38446,
+      "url": "https://github.com/keycloak/keycloak/pull/38446",
+      "title": "Implement recovery key support for user storage providers",
+      "golden": 2
+    },
+    {
+      "repo": "keycloak/keycloak",
+      "pr": 40940,
+      "url": "https://github.com/keycloak/keycloak/pull/40940",
+      "title": "Fix concurrent group access to prevent NullPointerException",
+      "golden": 2
+    },
+    {
+      "repo": "ai-code-review-evaluation/sentry-greptile",
+      "pr": 1,
+      "url": "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/1",
+      "title": "Enhanced Pagination Performance for High-Volume Audit Logs",
+      "golden": 3
+    },
+    {
+      "repo": "ai-code-review-evaluation/sentry-greptile",
+      "pr": 2,
+      "url": "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/2",
+      "title": "Optimize spans buffer insertion with eviction during insert",
+      "golden": 3
+    },
+    {
+      "repo": "ai-code-review-evaluation/sentry-greptile",
+      "pr": 3,
+      "url": "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/3",
+      "title": "feat(upsampling) - Support upsampled error count with performance optimizations",
+      "golden": 3
+    },
+    {
+      "repo": "getsentry/sentry",
+      "pr": 67876,
+      "url": "https://github.com/getsentry/sentry/pull/67876",
+      "title": "GitHub OAuth Security Enhancement",
+      "golden": 3
+    },
+    {
+      "repo": "ai-code-review-evaluation/sentry-greptile",
+      "pr": 5,
+      "url": "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/5",
+      "title": "Replays Self-Serve Bulk Delete System",
+      "golden": 3
+    },
+    {
+      "repo": "getsentry/sentry",
+      "pr": 93824,
+      "url": "https://github.com/getsentry/sentry/pull/93824",
+      "title": "Span Buffer Multiprocess Enhancement with Health Monitoring",
+      "golden": 5
+    },
+    {
+      "repo": "getsentry/sentry",
+      "pr": 77754,
+      "url": "https://github.com/getsentry/sentry/pull/77754",
+      "title": "feat(ecosystem): Implement cross-system issue synchronization",
+      "golden": 4
+    },
+    {
+      "repo": "getsentry/sentry",
+      "pr": 80528,
+      "url": "https://github.com/getsentry/sentry/pull/80528",
+      "title": "ref(crons): Reorganize incident creation / issue occurrence logic",
+      "golden": 2
+    },
+    {
+      "repo": "getsentry/sentry",
+      "pr": 95633,
+      "url": "https://github.com/getsentry/sentry/pull/95633",
+      "title": "feat(uptime): Add ability to use queues to manage parallelism",
+      "golden": 3
+    },
+    {
+      "repo": "getsentry/sentry",
+      "pr": 80168,
+      "url": "https://github.com/getsentry/sentry/pull/80168",
+      "title": "feat(workflow_engine): Add in hook for producing occurrences from the stateful detector",
+      "golden": 2
+    }
+  ]
+}
