@@ -63,7 +63,7 @@ jobs:
           path: codeatlas.vsix
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: codeatlas.vsix
           generate_release_notes: true
