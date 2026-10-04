@@ -19,6 +19,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { runVerifyForRepo, type RepoSpec, type VerifyResult } from './runVerify';
 import { isBackendRepo } from './repoCategories';
+import { execFileSync } from 'child_process';
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const REAL_REPOS = path.join(ROOT, 'e2e', 'real-repos');
@@ -114,6 +115,31 @@ describe('Real-world repo verification', () => {
 
         it(`[${spec.id}] (${spec.language}/${spec.framework}) full pipeline`, async () => {
             const result = await runVerifyForRepo(repoPath, spec);
+
+            // Corpus precondition. The baseline is only meaningful against the
+            // commit it was recorded from, so verify that first and fail with a
+            // message that names the real problem.
+            //
+            // Without this, a stale corpus reports "apiCount regressed" — which
+            // reads as a product defect and sends you looking at parsers. That
+            // is exactly what happened: the corpus drifted five months from the
+            // baseline and the suite reported 20 detection regressions that did
+            // not exist. A failure here means fix the corpus, not the code.
+            if (spec.sha) {
+                let head = '';
+                try {
+                    head = execFileSync('git', ['-C', repoPath, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+                } catch { /* not a git checkout (symlinked localPath) — skip the check */ }
+                if (head) {
+                    expect(
+                        head,
+                        `[${spec.id}] corpus is at ${head.slice(0, 10)} but repos.json pins ${spec.sha.slice(0, 10)}. ` +
+                        `The baseline does not describe this tree. Run \`npm run fetch:real-projects\` to re-sync ` +
+                        `(it re-fetches any repo whose HEAD does not match the pin). Do NOT update expectations to ` +
+                        `make this pass — that hides whatever moved.`,
+                    ).toBe(spec.sha);
+                }
+            }
 
             // Hard invariants — pipeline must not crash on real code, regardless of expectations.
             expect(result.initialized, `initialize() failed: ${result.error}`).toBe(true);

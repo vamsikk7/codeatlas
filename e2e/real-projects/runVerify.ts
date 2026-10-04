@@ -29,6 +29,12 @@ export interface RepoSpec {
     /** When set, fetch.sh symlinks this absolute/tilde-prefixed path into e2e/real-repos/<id> instead of cloning. */
     localPath?: string;
     includeGlobs: string[];
+    /**
+     * Pinned upstream commit. `ref` is documentation; THIS is what the corpus
+     * is reproduced from. Absent only for a newly added repo that has not been
+     * baselined yet.
+     */
+    sha?: string;
 }
 
 export interface VerifyResult {

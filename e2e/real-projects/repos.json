@@ -5,286 +5,451 @@
       "id": "js-express",
       "language": "javascript",
       "framework": "express",
-      "expectedFrameworks": ["express"],
+      "expectedFrameworks": [
+        "express"
+      ],
       "gitUrl": "https://github.com/hagopj13/node-express-boilerplate.git",
       "ref": "master",
-      "includeGlobs": ["src/**/*.js", "src/**/*.ts"]
+      "includeGlobs": [
+        "src/**/*.js",
+        "src/**/*.ts"
+      ],
+      "sha": "179ae84efec61b14206d0305d941daed6c6d07f9"
     },
     {
       "id": "ts-express-realworld",
       "language": "typescript",
       "framework": "express",
-      "expectedFrameworks": ["express"],
+      "expectedFrameworks": [
+        "express"
+      ],
       "gitUrl": "git@github.com:vamsikk7/test-nodejs-express.git",
       "ref": "master",
-      "includeGlobs": ["apps/**/*.ts", "libs/**/*.ts", "src/**/*.ts"]
+      "includeGlobs": [
+        "apps/**/*.ts",
+        "libs/**/*.ts",
+        "src/**/*.ts"
+      ],
+      "sha": "30b68e1e881462b2f4164ea09ab4c4f5699c7b0b"
     },
     {
       "id": "js-koa",
       "language": "javascript",
       "framework": "koa",
-      "expectedFrameworks": ["koa"],
+      "expectedFrameworks": [
+        "koa"
+      ],
       "gitUrl": "https://github.com/koajs/examples.git",
       "ref": "master",
-      "includeGlobs": ["**/*.js"]
+      "includeGlobs": [
+        "**/*.js"
+      ],
+      "sha": "40c77dbecec617361b6683bd2bd7ec4c6afae745"
     },
     {
       "id": "js-fastify",
       "language": "javascript",
       "framework": "fastify",
-      "expectedFrameworks": ["fastify"],
+      "expectedFrameworks": [
+        "fastify"
+      ],
       "gitUrl": "https://github.com/fastify/demo.git",
       "ref": "main",
-      "includeGlobs": ["src/**/*.{js,ts}"]
+      "includeGlobs": [
+        "src/**/*.{js,ts}"
+      ],
+      "sha": "5fa922df34d0ace9f8a63279bfd72ea06cf358da"
     },
     {
       "id": "ts-nestjs",
       "language": "typescript",
       "framework": "nestjs",
-      "expectedFrameworks": ["nestjs"],
+      "expectedFrameworks": [
+        "nestjs"
+      ],
       "gitUrl": "https://github.com/lujakob/nestjs-realworld-example-app.git",
       "ref": "master",
-      "includeGlobs": ["src/**/*.ts"]
+      "includeGlobs": [
+        "src/**/*.ts"
+      ],
+      "sha": "c1c2cc4e448b279ff083272df1ac50d20c3304fa"
     },
     {
       "id": "ts-hono",
       "language": "typescript",
       "framework": "hono",
-      "expectedFrameworks": ["hono"],
+      "expectedFrameworks": [
+        "hono"
+      ],
       "gitUrl": "https://github.com/honojs/examples.git",
       "ref": "main",
-      "includeGlobs": ["**/*.ts"]
+      "includeGlobs": [
+        "**/*.ts"
+      ],
+      "sha": "3b0b62875a0e1265763fea1c6388866d5697ef81"
     },
     {
       "id": "js-nextjs",
       "language": "typescript",
       "framework": "nextjs",
-      "expectedFrameworks": ["nextjs"],
+      "expectedFrameworks": [
+        "nextjs"
+      ],
       "gitUrl": "https://github.com/vercel/commerce.git",
       "ref": "main",
-      "includeGlobs": ["app/**/*.{ts,tsx}", "pages/**/*.{ts,tsx}", "src/**/*.{ts,tsx}"]
+      "includeGlobs": [
+        "app/**/*.{ts,tsx}",
+        "pages/**/*.{ts,tsx}",
+        "src/**/*.{ts,tsx}"
+      ],
+      "sha": "1df2cf6f6c935f4782eed27351fa18f276917a4d"
     },
     {
       "id": "ts-nuxt",
       "language": "typescript",
       "framework": "nuxt",
-      "expectedFrameworks": ["nuxt"],
+      "expectedFrameworks": [
+        "nuxt"
+      ],
       "gitUrl": "https://github.com/nuxt/examples.git",
       "ref": "main",
-      "includeGlobs": ["**/*.{ts,vue}"]
+      "includeGlobs": [
+        "**/*.{ts,vue}"
+      ],
+      "sha": "03235efec51af537764f3cdae90c7c39bfdf3835"
     },
     {
       "id": "ts-remix",
       "language": "typescript",
       "framework": "remix",
-      "expectedFrameworks": ["remix"],
+      "expectedFrameworks": [
+        "remix"
+      ],
       "gitUrl": "https://github.com/remix-run/blues-stack.git",
       "ref": "main",
-      "includeGlobs": ["app/**/*.{ts,tsx}"]
+      "includeGlobs": [
+        "app/**/*.{ts,tsx}"
+      ],
+      "sha": "7390646d6f3b6e6cb7ef722e4b61cdbffb997afc"
     },
     {
       "id": "ts-sveltekit",
       "language": "typescript",
       "framework": "sveltekit",
-      "expectedFrameworks": ["sveltekit"],
+      "expectedFrameworks": [
+        "sveltekit"
+      ],
       "gitUrl": "https://github.com/sveltejs/realworld.git",
       "ref": "master",
-      "includeGlobs": ["src/**/*.{ts,svelte,js}"]
+      "includeGlobs": [
+        "src/**/*.{ts,svelte,js}"
+      ],
+      "sha": "e80873cac4e615c96b6b95c6dcbc19699934a188"
     },
     {
       "id": "ts-trpc",
       "language": "typescript",
       "framework": "trpc",
-      "expectedFrameworks": ["trpc"],
+      "expectedFrameworks": [
+        "trpc"
+      ],
       "gitUrl": "https://github.com/trpc/examples-next-prisma-starter.git",
       "ref": "main",
-      "includeGlobs": ["src/**/*.{ts,tsx}"]
+      "includeGlobs": [
+        "src/**/*.{ts,tsx}"
+      ],
+      "sha": "d8b9a4fb5c8aef79cfe403fa1c986628d84af8c1"
     },
     {
       "id": "ts-apollo",
       "language": "typescript",
       "framework": "apollo",
-      "expectedFrameworks": ["apollo"],
+      "expectedFrameworks": [
+        "apollo"
+      ],
       "gitUrl": "https://github.com/apollographql/apollo-server.git",
       "ref": "main",
-      "includeGlobs": ["packages/server/src/**/*.ts"]
+      "includeGlobs": [
+        "packages/server/src/**/*.ts"
+      ],
+      "sha": "4f154060bbe57d3bd612cb09ab63467f319d4ba5"
     },
     {
       "id": "py-django",
       "language": "python",
       "framework": "django",
-      "expectedFrameworks": ["django"],
+      "expectedFrameworks": [
+        "django"
+      ],
       "gitUrl": "https://github.com/gothinkster/django-realworld-example-app.git",
       "ref": "master",
-      "includeGlobs": ["**/*.py"]
+      "includeGlobs": [
+        "**/*.py"
+      ],
+      "sha": "29c9d42831fa0cfc5a4aa7561f674396eacf20a2"
     },
     {
       "id": "py-fastapi",
       "language": "python",
       "framework": "fastapi",
-      "expectedFrameworks": ["fastapi"],
+      "expectedFrameworks": [
+        "fastapi"
+      ],
       "gitUrl": "https://github.com/tiangolo/full-stack-fastapi-template.git",
       "ref": "master",
-      "includeGlobs": ["backend/**/*.py"]
+      "includeGlobs": [
+        "backend/**/*.py"
+      ],
+      "sha": "13652b51ea0acca7dfe243ac25e2bbdc066f3c4f"
     },
     {
       "id": "py-flask",
       "language": "python",
       "framework": "flask",
-      "expectedFrameworks": ["flask"],
+      "expectedFrameworks": [
+        "flask"
+      ],
       "gitUrl": "https://github.com/cookiecutter-flask/cookiecutter-flask.git",
-      "ref": "main",
-      "includeGlobs": ["**/*.py"]
+      "ref": "master",
+      "includeGlobs": [
+        "**/*.py"
+      ],
+      "sha": "e5666c23a633b5b6fcb0dc2cfda2441d7f885727"
     },
     {
       "id": "java-spring",
       "language": "java",
       "framework": "spring",
-      "expectedFrameworks": ["spring"],
+      "expectedFrameworks": [
+        "spring"
+      ],
       "gitUrl": "https://github.com/spring-projects/spring-petclinic.git",
       "ref": "main",
-      "includeGlobs": ["src/main/java/**/*.java"]
+      "includeGlobs": [
+        "src/main/java/**/*.java"
+      ],
+      "sha": "c7ee170434ec3e369fdc9201290ba2ea4c92b557"
     },
     {
       "id": "kotlin-ktor",
       "language": "kotlin",
       "framework": "ktor",
-      "expectedFrameworks": ["ktor"],
+      "expectedFrameworks": [
+        "ktor"
+      ],
       "gitUrl": "https://github.com/ktorio/ktor-samples.git",
       "ref": "main",
-      "includeGlobs": ["**/*.kt"]
+      "includeGlobs": [
+        "**/*.kt"
+      ],
+      "sha": "42a258b59afd1b2a53e42304b1c5b1bd1dc1cdcb"
     },
     {
       "id": "go-gin",
       "language": "go",
       "framework": "gin",
-      "expectedFrameworks": ["gin"],
+      "expectedFrameworks": [
+        "gin"
+      ],
       "gitUrl": "https://github.com/gothinkster/golang-gin-realworld-example-app.git",
-      "ref": "master",
-      "includeGlobs": ["**/*.go"]
+      "ref": "main",
+      "includeGlobs": [
+        "**/*.go"
+      ],
+      "sha": "626c372d259472148d93303f74aa9b9a1cdcef24"
     },
     {
       "id": "go-echo",
       "language": "go",
       "framework": "echo",
-      "expectedFrameworks": ["echo"],
+      "expectedFrameworks": [
+        "echo"
+      ],
       "gitUrl": "https://github.com/labstack/echox.git",
       "ref": "master",
-      "includeGlobs": ["**/*.go"]
+      "includeGlobs": [
+        "**/*.go"
+      ],
+      "sha": "f938a8c5e04e1fb17993c0b97b4aab418cfc7095"
     },
     {
       "id": "go-chi",
       "language": "go",
       "framework": "chi",
-      "expectedFrameworks": ["chi"],
+      "expectedFrameworks": [
+        "chi"
+      ],
       "gitUrl": "https://github.com/go-chi/chi.git",
       "ref": "master",
-      "includeGlobs": ["_examples/**/*.go"]
+      "includeGlobs": [
+        "_examples/**/*.go"
+      ],
+      "sha": "a54874f0e2f12647a19e82ee70dfa8185014100c"
     },
     {
       "id": "go-fiber",
       "language": "go",
       "framework": "fiber",
-      "expectedFrameworks": ["fiber"],
+      "expectedFrameworks": [
+        "fiber"
+      ],
       "gitUrl": "https://github.com/gofiber/recipes.git",
       "ref": "master",
-      "includeGlobs": ["**/*.go"]
+      "includeGlobs": [
+        "**/*.go"
+      ],
+      "sha": "44e9ecb820a5326d83c5b29bb07484bcca4c10fa"
     },
     {
       "id": "php-laravel",
       "language": "php",
       "framework": "laravel",
-      "expectedFrameworks": ["laravel"],
+      "expectedFrameworks": [
+        "laravel"
+      ],
       "gitUrl": "https://github.com/laravel/laravel.git",
       "ref": "12.x",
-      "includeGlobs": ["routes/**/*.php", "app/**/*.php"]
+      "includeGlobs": [
+        "routes/**/*.php",
+        "app/**/*.php"
+      ],
+      "sha": "e90c74ca717e9082d7463a2db50814fe565a3e44"
     },
     {
       "id": "php-symfony",
       "language": "php",
       "framework": "symfony",
-      "expectedFrameworks": ["symfony"],
+      "expectedFrameworks": [
+        "symfony"
+      ],
       "gitUrl": "https://github.com/symfony/demo.git",
       "ref": "main",
-      "includeGlobs": ["src/**/*.php"]
+      "includeGlobs": [
+        "src/**/*.php"
+      ],
+      "sha": "0287dc2ba6df7c332d05575885b497cbb807c380"
     },
     {
       "id": "ruby-rails",
       "language": "ruby",
       "framework": "rails",
-      "expectedFrameworks": ["rails"],
+      "expectedFrameworks": [
+        "rails"
+      ],
       "gitUrl": "https://github.com/gothinkster/rails-realworld-example-app.git",
       "ref": "master",
-      "includeGlobs": ["app/**/*.rb", "config/routes.rb"]
+      "includeGlobs": [
+        "app/**/*.rb",
+        "config/routes.rb"
+      ],
+      "sha": "a2ae4fff78b3337683cea988c023281dcb5551b9"
     },
     {
       "id": "ruby-sinatra",
       "language": "ruby",
       "framework": "sinatra",
-      "expectedFrameworks": ["sinatra"],
+      "expectedFrameworks": [
+        "sinatra"
+      ],
       "gitUrl": "https://github.com/sinatra/sinatra.git",
       "ref": "main",
-      "includeGlobs": ["examples/**/*.rb"]
+      "includeGlobs": [
+        "examples/**/*.rb"
+      ],
+      "sha": "5236d3459b8b9015e5ce21ddd0c6beb0db4081d4"
     },
     {
       "id": "rust-actix",
       "language": "rust",
       "framework": "actix",
-      "expectedFrameworks": ["actix"],
+      "expectedFrameworks": [
+        "actix"
+      ],
       "gitUrl": "https://github.com/actix/examples.git",
-      "ref": "master",
-      "includeGlobs": ["**/*.rs"]
+      "ref": "main",
+      "includeGlobs": [
+        "**/*.rs"
+      ],
+      "sha": "768c741c63dfd713500b9716a393cd8c5d1b4523"
     },
     {
       "id": "rust-axum",
       "language": "rust",
       "framework": "axum",
-      "expectedFrameworks": ["axum"],
+      "expectedFrameworks": [
+        "axum"
+      ],
       "gitUrl": "https://github.com/tokio-rs/axum.git",
       "ref": "main",
-      "includeGlobs": ["examples/**/*.rs"]
+      "includeGlobs": [
+        "examples/**/*.rs"
+      ],
+      "sha": "c853e44ffce77b771069b6df6bd5adc1b78f1b2f"
     },
     {
       "id": "rust-rocket",
       "language": "rust",
       "framework": "rocket",
-      "expectedFrameworks": ["rocket"],
+      "expectedFrameworks": [
+        "rocket"
+      ],
       "gitUrl": "https://github.com/rwf2/Rocket.git",
       "ref": "master",
-      "includeGlobs": ["examples/**/*.rs"]
+      "includeGlobs": [
+        "examples/**/*.rs"
+      ],
+      "sha": "3a54d079aef060a8f732bd04ea54b0581a604087"
     },
     {
       "id": "csharp-aspnet",
       "language": "csharp",
       "framework": "aspnet",
-      "expectedFrameworks": ["aspnet"],
+      "expectedFrameworks": [
+        "aspnet"
+      ],
       "gitUrl": "https://github.com/gothinkster/aspnetcore-realworld-example-app.git",
       "ref": "master",
-      "includeGlobs": ["src/**/*.cs"]
+      "includeGlobs": [
+        "src/**/*.cs"
+      ],
+      "sha": "9feb3fb2f767f1d1ec7f2db6f2b5beb0468d4672"
     },
     {
       "id": "swift-vapor",
       "language": "swift",
       "framework": "vapor",
-      "expectedFrameworks": ["vapor"],
+      "expectedFrameworks": [
+        "vapor"
+      ],
       "gitUrl": "https://github.com/vapor/api-template.git",
-      "ref": "main",
-      "includeGlobs": ["Sources/**/*.swift"]
+      "ref": "master",
+      "includeGlobs": [
+        "Sources/**/*.swift"
+      ],
+      "sha": "7d99b769098a7350a08e6ab9907a5d7ffeb45338"
     },
     {
       "id": "ts-react-native",
       "language": "typescript",
       "framework": "react-native",
-      "expectedFrameworks": ["react-native"],
+      "expectedFrameworks": [
+        "react-native"
+      ],
       "gitUrl": "https://github.com/expo/examples.git",
       "ref": "master",
-      "includeGlobs": ["with-typescript/**/*.{ts,tsx}", "with-router/**/*.{ts,tsx}"]
+      "includeGlobs": [
+        "with-typescript/**/*.{ts,tsx}",
+        "with-router/**/*.{ts,tsx}"
+      ],
+      "sha": "dc0574593c2427eb4f6d1c18b3496e5c581898da"
     },
     {
       "id": "dart-flutter",
       "language": "dart",
       "framework": "flutter",
-      "expectedFrameworks": ["flutter"],
+      "expectedFrameworks": [
+        "flutter"
+      ],
       "gitUrl": "https://github.com/flutter/samples.git",
       "ref": "main",
       "_note": "Issue 346: provider_counter/ and isolate_example/ no longer exist in flutter/samples. Narrowed to a handful of small samples whose Dart code stays within Dart 2.x syntax — bundled tree-sitter-dart grammar (tree-sitter-wasms@0.1.13) fails on Dart 3.x switch expressions and abstract-final-class modifiers. Grammar bump is tracked separately as a follow-up.",
@@ -293,103 +458,165 @@
         "dynamic_theme/lib/**/*.dart",
         "background_isolate_channels/lib/**/*.dart",
         "form_app/lib/**/*.dart"
-      ]
+      ],
+      "sha": "56bf76f2f091735a2140a85d954ae850c26309f8"
     },
     {
       "id": "kotlin-android",
       "language": "kotlin",
       "framework": "android-compose",
-      "expectedFrameworks": ["android-compose"],
+      "expectedFrameworks": [
+        "android-compose"
+      ],
       "gitUrl": "https://github.com/android/compose-samples.git",
       "ref": "main",
-      "includeGlobs": ["JetNews/app/src/main/**/*.kt", "Jetcaster/app/src/main/**/*.kt"]
+      "includeGlobs": [
+        "JetNews/app/src/main/**/*.kt",
+        "Jetcaster/app/src/main/**/*.kt"
+      ],
+      "sha": "d58a12da35b9d4d693bbbc97d52e59bc7f430892"
     },
     {
       "id": "swift-ios",
       "language": "swift",
       "framework": "swiftui",
-      "expectedFrameworks": ["swiftui"],
+      "expectedFrameworks": [
+        "swiftui"
+      ],
       "gitUrl": "https://github.com/apple/sample-food-truck.git",
       "ref": "main",
-      "includeGlobs": ["**/*.swift"]
+      "includeGlobs": [
+        "**/*.swift"
+      ],
+      "sha": "3954a769e99f3cc53297d94f2b960ceb2665b3d6"
     },
     {
       "id": "java-spring-kafka",
       "language": "java",
       "framework": "spring",
-      "expectedFrameworks": ["spring"],
+      "expectedFrameworks": [
+        "spring"
+      ],
       "gitUrl": "https://github.com/spring-projects/spring-kafka.git",
       "ref": "main",
-      "includeGlobs": ["samples/**/*.java", "spring-kafka/src/main/**/*.java"]
+      "includeGlobs": [
+        "samples/**/*.java",
+        "spring-kafka/src/main/**/*.java"
+      ],
+      "sha": "5be5015a67952ab88891c05676b58489bac12ee2"
     },
     {
       "id": "py-django-celery",
       "language": "python",
       "framework": "django",
-      "expectedFrameworks": ["django"],
+      "expectedFrameworks": [
+        "django"
+      ],
       "gitUrl": "https://github.com/celery/celery.git",
       "ref": "main",
-      "includeGlobs": ["examples/**/*.py", "celery/**/*.py"]
+      "includeGlobs": [
+        "examples/**/*.py",
+        "celery/**/*.py"
+      ],
+      "sha": "8f0842b336bb95b38e436ca0739e9646ac016ae4"
     },
     {
       "id": "ruby-rails-sidekiq",
       "language": "ruby",
       "framework": "sidekiq",
-      "expectedFrameworks": ["sidekiq"],
+      "expectedFrameworks": [
+        "sidekiq"
+      ],
       "gitUrl": "https://github.com/sidekiq/sidekiq.git",
       "ref": "main",
-      "includeGlobs": ["examples/**/*.rb", "lib/**/*.rb"]
+      "includeGlobs": [
+        "examples/**/*.rb",
+        "lib/**/*.rb"
+      ],
+      "sha": "6bdf6903e93eeaf9b96fcbbe66f503fe758ee4b2"
     },
     {
       "id": "py-starlette",
       "language": "python",
       "framework": "starlette",
-      "expectedFrameworks": ["starlette"],
+      "expectedFrameworks": [
+        "starlette"
+      ],
       "gitUrl": "https://github.com/encode/starlette.git",
-      "ref": "master",
-      "includeGlobs": ["starlette/**/*.py", "tests/**/*.py"]
+      "ref": "main",
+      "includeGlobs": [
+        "starlette/**/*.py",
+        "tests/**/*.py"
+      ],
+      "sha": "100f05a66bf3ff5643540164ae95fc3ad9ed3443"
     },
     {
       "id": "py-drf",
       "language": "python",
       "framework": "drf",
-      "expectedFrameworks": ["drf"],
+      "expectedFrameworks": [
+        "drf"
+      ],
       "gitUrl": "https://github.com/encode/django-rest-framework.git",
-      "ref": "master",
-      "includeGlobs": ["rest_framework/**/*.py", "tests/**/*.py"]
+      "ref": "main",
+      "includeGlobs": [
+        "rest_framework/**/*.py",
+        "tests/**/*.py"
+      ],
+      "sha": "7433faa98f27c200e34c04586c20024d4d6aa935"
     },
     {
       "id": "java-micronaut",
       "language": "java",
       "framework": "micronaut",
-      "expectedFrameworks": ["micronaut"],
+      "expectedFrameworks": [
+        "micronaut"
+      ],
       "gitUrl": "https://github.com/micronaut-projects/micronaut-guides.git",
       "ref": "master",
-      "includeGlobs": ["guides/**/*.java", "guides/**/*.kt"]
+      "includeGlobs": [
+        "guides/**/*.java",
+        "guides/**/*.kt"
+      ],
+      "sha": "3723730a29029fb401b065068a6b2f800a41f6ee"
     },
     {
       "id": "java-jaxrs",
       "language": "java",
       "framework": "jaxrs",
-      "expectedFrameworks": ["jaxrs"],
+      "expectedFrameworks": [
+        "jaxrs"
+      ],
       "gitUrl": "https://github.com/eclipse-ee4j/jersey.git",
-      "ref": "master",
-      "includeGlobs": ["examples/**/*.java"]
+      "ref": "4.x",
+      "includeGlobs": [
+        "examples/**/*.java"
+      ],
+      "sha": "55e63c24c461a01984dc3b3c2f88dd84d060a263"
     },
     {
       "id": "ts-nextjs-pages",
       "language": "typescript",
       "framework": "nextjs",
-      "expectedFrameworks": ["nextjs"],
+      "expectedFrameworks": [
+        "nextjs"
+      ],
       "gitUrl": "https://github.com/vercel/next.js.git",
       "ref": "canary",
-      "includeGlobs": ["examples/with-typescript/**/*.{ts,tsx}", "examples/blog-starter/**/*.{ts,tsx}", "examples/api-routes/**/*.{ts,tsx}"]
+      "includeGlobs": [
+        "examples/with-typescript/**/*.{ts,tsx}",
+        "examples/blog-starter/**/*.{ts,tsx}",
+        "examples/api-routes/**/*.{ts,tsx}"
+      ],
+      "sha": "fda8a605ddd621785fa1ec34cbcfbdfe67dd721a"
     },
     {
       "id": "js-serverless-examples",
       "language": "javascript",
       "framework": "serverless",
-      "expectedFrameworks": ["serverless"],
+      "expectedFrameworks": [
+        "serverless"
+      ],
       "gitUrl": "https://github.com/serverless/examples.git",
       "ref": "v3",
       "_note": "Serverless Framework canonical examples — multi-language (Node.js/Python/Go/Java/Ruby) with serverless.yml route definitions. Exercises UX-25 SLS YAML extractor + per-language framework detectors across a wide handler surface. Globs scan handlers + all YAML so the IaC scan path runs against serverless.yml templates.",
@@ -397,7 +624,8 @@
         "**/*.{js,ts,py,go,rb,java,cs}",
         "**/serverless.yml",
         "**/serverless.yaml"
-      ]
+      ],
+      "sha": "22865199326008b9f863cb1ad28bfdddae9a7473"
     }
   ]
 }

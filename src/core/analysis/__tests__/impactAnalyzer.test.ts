@@ -19,7 +19,12 @@ function makeSnapshot(
     return { files, apiIndex: {}, graphs: {}, callGraph: serialized };
 }
 
-function buildGraph(edges: Array<[string, string, number?, 'calls' | 'imports'?]>): WorkspaceCallGraph {
+// The optional tuple element is parenthesised deliberately. Written as
+// `'calls' | 'imports'?` the `?` binds to `'imports'` alone, which sends
+// TypeScript down its JSDoc-nullable parse path and makes CodeQL's extractor
+// fail the whole file with "Unsupported TypeScript syntax JSDocNullableType".
+// The resulting type is identical; only the parse differs.
+function buildGraph(edges: Array<[string, string, number?, ('calls' | 'imports')?]>): WorkspaceCallGraph {
     const graph = new WorkspaceCallGraph();
     const seen = new Set<string>();
     for (const [caller, callee] of edges) {
